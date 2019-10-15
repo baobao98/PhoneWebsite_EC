@@ -4,7 +4,8 @@ mongoose.Promise=global.Promise;
 
 var typeProductSchema= new Schema({
     name: String,
-    nation:String
+    no: Number, // number order on menu
+    alias:String
 })
 
 module.exports = mongoose.model('TypeProduct',typeProductSchema);

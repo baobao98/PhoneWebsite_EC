@@ -12,7 +12,10 @@ var staffSchema = new Schema({
         enum: ['staff','admin'],
         required: true
     },
-    email: String
+    email: String,
+    avatar: String,
+    dateOfBirth: Date,
+    gender: Boolean
 });
 //
 staffSchema.pre('save', function(next){
