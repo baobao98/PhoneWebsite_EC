@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-mongoose.Promise =global.Promise;
+var ObjectId= Schema.Types.ObjectId;
 
 var phoneInfoSchema = new Schema({
     screenSize: String,
@@ -19,7 +19,7 @@ var productSchema = new Schema({
     price: {type: Number, required:true},
     promotion: Number,
     phoneInfo: phoneInfoSchema,
-    typeProduct_id: { type: ObjectId, ref: 'TypeProduct'},
+    typeProduct_id: { type: ObjectId, ref: 'typeProduct'},
     imagePaths: Array,
     quantity:Number,
     description:String,
