@@ -7,7 +7,7 @@ var typeProductSchema= new Schema({
     name: {type:String,required:true,index:{unique:true}},
     no: Number, // number order on menu
     alias:String,
-    products: [{ type: ObjectId, ref: 'product'}],
+    products: [{ type: ObjectId, ref: 'Product'}],
 })
 
 module.exports = mongoose.model('TypeProduct',typeProductSchema);

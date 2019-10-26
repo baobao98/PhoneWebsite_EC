@@ -1,11 +1,11 @@
 var mongosee=require('mongoose');
 var Schema=mongosee.Schema;
 
-var billSchema=new Schema({
+var invoiceSchema=new Schema({
     receiver: { type: String, required: true },
     address:{ type: String, required: true },
     note:String,
-    phoneNubmer:{type: String, required:true },
+    phoneNumber:{type: String, required:true },
     products:{type: Array, required: true},
     state: Boolean,
     typeOfPayment:{
@@ -19,4 +19,6 @@ var billSchema=new Schema({
     }
 })
 
-module.exports=mongosee.model('Bill',billSchema);
+
+
+module.exports=mongosee.model('Invoice',invoiceSchema);

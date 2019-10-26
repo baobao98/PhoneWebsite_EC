@@ -1,0 +1,102 @@
+{
+  "info": {
+    "title": "PHONE SHOP WEB API",
+    "description": "All API in the backend",
+    "contact": {
+      "name": "Bao 'n' Huy company"
+    },
+    "servers": ["http://localhost:3000"]
+  },
+  "schemes": "http",
+  "consumes": "application/json",
+  "produces": "application/json",
+  "tags": [
+    {
+      "name": "Store Info",
+      "description": "Information of your shops"
+    },
+    {
+      "name": "Invoice Management",
+      "description": ""
+    },
+    {
+      "name": "Product Management",
+      "description": ""
+    },
+    {
+      "name": "Type Product Management",
+      "description": ""
+    },
+    {
+      "name": "User Management",
+      "description": ""
+    },
+    {
+      "name": "Staff Management",
+      "description": ""
+    }
+  ],
+  "paths": {
+    "/info": {
+      "get": {
+        "tags": ["Store Info"],
+        "description": "Use to request all information of shop",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/storeInfo"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Store Info"]
+      }
+    },
+    "/product": {
+      "get": {
+        "tags": ["Product Management"],
+        "description": "Use to request all products",
+        "response": {
+          "200": {
+            "description": "A successful response"
+          }
+        }
+      }
+    },
+    "/typeproduct": {},
+    "/invoice": {},
+    "/staff": {},
+    "/users": {}
+  },
+  "definitions":{
+    "storeInfo":{
+      "type":"object",
+      "properties": {
+          "phoneNumb":{
+            "type": "string"
+          },
+          "address":{
+            "type": "string"
+          },
+          "email":{
+            "type": "string"
+          },
+          "name":{
+            "type": "string"
+          },
+          "date":{
+            "type": "string",
+            "format": "date-time"
+          },
+          "company":{
+            "type": "string"
+          }
+      }
+    }
+  }
+}

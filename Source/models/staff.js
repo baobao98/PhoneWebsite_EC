@@ -17,23 +17,7 @@ var staffSchema = new Schema({
     dateOfBirth: Date,
     gender: Boolean
 });
-//
-staffSchema.pre('save', function(next){
-    var staff = this;
-    //
-    if(!staff.isModified('password')) return next();
-    bcrypt.hash(staff.password, null, null, function (err,hash){
-        if(err) return next(err);
-        staff.password = hash;
-        next();
-    });
-});
-//
-staffSchema.methods.comparePassword = function (password){
-    var staff = this;
 
-    return bcrypt.compareSync(password, staff.password);
-};
 
 //
 module.exports = mongoose.model('Staff', staffSchema);
