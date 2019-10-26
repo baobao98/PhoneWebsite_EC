@@ -12,13 +12,19 @@ import {RegisterComponent} from './components/register/register.component';
 import {HomeComponent} from './components/home/home.component';
 import {AuthenticationService} from './services/authentication.service';
 import {AuthGuardService} from './services/auth-guard.service';
+import { AdminModule } from './admin/admin.module';
+import { CustomerModule } from './customer/customer.module';
+import { AuthModule } from './auth/auth.module';
 
-const routes: Routes=[
-  {path: '',component: HomeComponent},
-  {path: 'login',component: LoginComponent},
-  {path: 'register',component: RegisterComponent},
-  {path: 'profile',component: ProfileComponent, canActivate:[AuthGuardService]},
-]
+const routes: Routes = [
+  { path: 'login', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)},
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
+  { path: 'customer', loadChildren: () => import('./customer/customer.module').then(m => m.CustomerModule)},
+  { path: '', component: HomeComponent},
+  // {path: 'login', component: LoginComponent},
+  // {path: 'register', component: RegisterComponent},
+  // {path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]},
+];
 
 
 @NgModule({
@@ -33,9 +39,12 @@ const routes: Routes=[
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    AdminModule,
+    CustomerModule,
+    AuthModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthenticationService,AuthGuardService],
+  providers: [AuthenticationService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
