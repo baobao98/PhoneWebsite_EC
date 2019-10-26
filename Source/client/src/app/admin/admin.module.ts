@@ -12,6 +12,8 @@ import { CustomerDetailComponent } from './customer/customer-detail/customer-det
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
 import { AdminHeaderComponent } from './layout/admin-header/admin-header.component';
 import { AdminFooterComponent } from './layout/admin-footer/admin-footer.component';
+import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,10 +26,12 @@ import { AdminFooterComponent } from './layout/admin-footer/admin-footer.compone
     OrderListComponent,
     OrderDetailComponent,
     CustomerListComponent,
-    CustomerDetailComponent
+    CustomerDetailComponent,
+    AdminProfileComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
     AdminRoutingModule
   ]
 })

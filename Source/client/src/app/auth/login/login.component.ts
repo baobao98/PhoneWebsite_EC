@@ -21,7 +21,10 @@ export class LoginComponent implements OnInit {
     birthday: new Date()
   };
 
-  constructor(private auth: AuthenticationService, private router: Router){}
+  constructor(
+    private auth: AuthenticationService,
+    private router: Router
+    ) {}
 
   ngOnInit() {
 
@@ -30,7 +33,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.auth.login(this.credentials).subscribe(
       () => {
-        this.router.navigateByUrl('/profile');
+        this.router.navigateByUrl('/admin/profile');
       },
       err => {
         console.error(err);
