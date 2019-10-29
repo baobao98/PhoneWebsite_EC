@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd';
 import { ProductTypeDetailComponent } from '../product-type-detail/product-type-detail.component';
 import { BaseListComponent } from 'src/app/common/base/base-list';
-import { Operator } from 'src/app/common/enums/Operator.enum';
+import { ActionEnum } from 'src/app/common/enums/Actions.enum';
 
 @Component({
   selector: 'app-product-type-list',
@@ -33,7 +33,7 @@ export class ProductTypeListComponent extends BaseListComponent implements OnIni
       nzComponentParams: {
         params: {
           id: model ? model.id : '',
-          operator: model ? Operator.Update : Operator.Add
+          operator: model ? ActionEnum.Update : ActionEnum.Add
         }
       },
       nzFooter: [{

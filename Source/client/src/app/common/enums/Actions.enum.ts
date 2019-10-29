@@ -1,4 +1,4 @@
-export enum Operator {
+export enum ActionEnum {
   Add,
   Update,
   Delete
