@@ -19,7 +19,7 @@ var productSchema = new Schema({
     price: {type: Number, required:true},
     promotion: Number,
     phoneInfo: phoneInfoSchema,
-    typeProduct_id: { type: ObjectId, ref: 'typeProduct'},
+    typeProduct: { type: ObjectId, ref: 'typeProduct'},
     imagePaths: Array,
     quantity:Number,
     description:String,

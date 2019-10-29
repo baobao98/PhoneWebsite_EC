@@ -55,7 +55,7 @@ router.route('/:info_id')
         })
     })
     .put((req, res) => {
-        info.findById(req.params.info_id, (err, info) => {
+        Info.findById(req.params.info_id, (err, info) => {
             if (err) return res.send(err);
 
             //set the new type of product if it exists in the request 

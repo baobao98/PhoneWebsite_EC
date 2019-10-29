@@ -14,7 +14,7 @@ Products.route('/')
         pro.price = req.body.price;
         pro.promotion = req.body.promotion;
         pro.phoneInfo = req.body.phoneInfo;
-        pro.typeProduct_id = req.body.Type;
+        pro.typeProduct = req.body.Type;
         pro.imagePaths = req.body.imagePaths;
         pro.quantity = req.body.quantity;
         pro.description = req.body.description;
@@ -80,7 +80,7 @@ Products.route('/:product_id')
             if (req.body.price) pro.price = req.body.price;
             if (req.body.promotion) pro.promotion = req.body.promotion;
             if (req.body.phoneInfo) pro.phoneInfo = req.body.phoneInfo;
-            if (req.body.typeproduct_id) pro.typeProduct_id = req.body.Type;
+            if (req.body.Type) pro.typeProduct = req.body.Type;
             if (req.body.imagePaths) pro.imagePaths = req.body.imagePaths;
             if (req.body.quantity) pro.quantity = req.body.quantity;
             if (req.body.description) pro.description = req.body.description;
