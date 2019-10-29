@@ -40,6 +40,9 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
+    AuthModule,
+    AdminModule,
+    CustomerModule
   ],
   providers: [
     AuthenticationService,

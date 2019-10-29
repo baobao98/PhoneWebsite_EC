@@ -13,7 +13,15 @@ import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.compone
 import { AdminHeaderComponent } from './layout/admin-header/admin-header.component';
 import { AdminFooterComponent } from './layout/admin-footer/admin-footer.component';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
+
+/** config angular i18n **/
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+import { ProductTypeListComponent } from './product-type/product-type-list/product-type-list.component';
+import { ProductTypeDetailComponent } from './product-type/product-type-detail/product-type-detail.component';
+registerLocaleData(en);
 
 @NgModule({
   declarations: [
@@ -27,12 +35,25 @@ import { FormsModule } from '@angular/forms';
     OrderDetailComponent,
     CustomerListComponent,
     CustomerDetailComponent,
-    AdminProfileComponent
+    AdminProfileComponent,
+    ProductTypeListComponent,
+    ProductTypeDetailComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    /** import ng-zorro-antd root module，you should import NgZorroAntdModule and avoid importing sub modules directly **/
+    NgZorroAntdModule,
+    ReactiveFormsModule
+  ],
+  entryComponents: [
+    ProductTypeDetailComponent,
+    ProductDetailComponent
+  ],
+  /** config ng-zorro-antd i18n (language && date) **/
+  providers   : [
+    { provide: NZ_I18N, useValue: en_US }
   ]
 })
 export class AdminModule { }
