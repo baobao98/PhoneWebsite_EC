@@ -2,23 +2,33 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var ObjectId= Schema.Types.ObjectId;
 
-var phoneInfoSchema = new Schema({
-    screenSize: String,
-    frontCam: String,
-    backCam: String,
-    cpu: String,
-    ram: String,
-    storageCapacity: String,
-    memoryCard: String,
-    sim: String,
-    os: String,
-})
+// var phoneInfoSchema = new Schema({
+//     screenSize: String,
+//     frontCam: String,
+//     backCam: String,
+//     cpu: String,
+//     ram: String,
+//     storageCapacity: String,
+//     memoryCard: String,
+//     sim: String,
+//     os: String,
+// })
 
 var productSchema = new Schema({
     name: String,
     price: {type: Number, required:true},
     promotion: Number,
-    phoneInfo: phoneInfoSchema,
+    phoneInfo: {
+        screenSize: String,
+        frontCam: String,
+        backCam: String,
+        cpu: String,
+        ram: String,
+        storageCapacity: String,
+        memoryCard: String,
+        sim: String,
+        os: String,
+    },
     typeProduct: { type: ObjectId, ref: 'typeProduct'},
     imagePaths: Array,
     quantity:Number,

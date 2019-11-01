@@ -14,7 +14,7 @@ Products.route('/')
         pro.price = req.body.price;
         pro.promotion = req.body.promotion;
         pro.phoneInfo = req.body.phoneInfo;
-        pro.typeProduct = req.body.Type;
+        pro.typeProduct =  req.body.typeProduct;
         pro.imagePaths = req.body.imagePaths;
         pro.quantity = req.body.quantity;
         pro.description = req.body.description;
@@ -30,7 +30,7 @@ Products.route('/')
                     return res.send(err);
             }
             res.json({ message: 'Product created' });
-            TypeProduct.updateOne({ _id: req.body.Type._id }, { $push: { products: pro._id } },
+            TypeProduct.updateOne({ _id: req.body.typeProduct }, { $push: { products: pro._id } },
                 function (error, success) {
                     if (error) {
                         console.log(error);
