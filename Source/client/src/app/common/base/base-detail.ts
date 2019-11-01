@@ -1,6 +1,7 @@
 import { OnInit, Input } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NzModalRef } from 'ng-zorro-antd';
+import { ActionEnum } from '../enums/Actions.enum';
 
 export class BaseDetailComponent implements OnInit {
 
@@ -13,8 +14,14 @@ export class BaseDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
     this.itemForm = this.fb.group({
     });
+
+    if (this.params.action === ActionEnum.Update) {
+      this.itemForm.addControl('id', new FormControl('', Validators.required));
+    }
+
   }
 
   save() {

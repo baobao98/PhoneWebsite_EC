@@ -1,1 +1,46 @@
-<p>product-detail works!</p>
+<form nz-form [formGroup]="itemForm">
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">Name</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <input nz-input formControlName="name" id="name" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="price">Price</nz-form-label>
+      <nz-form-control [nzSm]="18" [nzXs]="24">
+        <nz-input-number formControlName="price" [nzMin]="1" [nzStep]="1" id="price"></nz-input-number>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="promotion">Promotion</nz-form-label>
+      <nz-form-control [nzSm]="18" [nzXs]="24">
+        <nz-input-number formControlName="promotion" [nzMin]="1" [nzStep]="1" id="promotion"></nz-input-number>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="typeProduct">Type Product</nz-form-label>
+        <nz-form-control [nzSm]="18" [nzXs]="24">
+          <nz-select formControlName="typeProduct" nzAllowClear nzPlaceHolder="Choose type product">
+            <nz-option *ngFor="let item of typeProducts" [nzValue]="item.name" [nzLabel]="item.id"></nz-option>
+          </nz-select>
+        </nz-form-control>
+    </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="quantity">Quantity</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <nz-input-number formControlName="quantity" [nzMin]="1" [nzStep]="1" id="quantity"></nz-input-number>
+    </nz-form-control>
+</nz-form-item>
+<nz-form-item>
+  <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="description">Description</nz-form-label>
+  <nz-form-control [nzSm]="18" [nzXs]="24">
+      <textarea rows="4" nz-input formControlName="description" id="description" ></textarea>
+  </nz-form-control>
+</nz-form-item>
+<nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="alias">Alias</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <nz-input-number formControlName="alias" [nzMin]="1" [nzStep]="1" id="alias"></nz-input-number>
+    </nz-form-control>
+</nz-form-item>
+</form>

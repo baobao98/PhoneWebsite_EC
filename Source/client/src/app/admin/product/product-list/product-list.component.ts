@@ -3,6 +3,7 @@ import { BaseListComponent } from 'src/app/common/base/base-list';
 import { NzModalService } from 'ng-zorro-antd';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
 import { ActionEnum } from 'src/app/common/enums/Actions.enum';
+import { DataService } from 'src/app/services/data-service';
 
 @Component({
   selector: 'app-product-list',
@@ -12,9 +13,10 @@ import { ActionEnum } from 'src/app/common/enums/Actions.enum';
 export class ProductListComponent extends BaseListComponent implements OnInit {
 
   constructor(
+    public dataService: DataService,
     private modalService: NzModalService,
   ) {
-    super();
+    super(dataService);
   }
 
   ngOnInit() {

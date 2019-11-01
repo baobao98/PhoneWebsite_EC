@@ -3,6 +3,7 @@ import { NzModalService } from 'ng-zorro-antd';
 import { ProductTypeDetailComponent } from '../product-type-detail/product-type-detail.component';
 import { BaseListComponent } from 'src/app/common/base/base-list';
 import { ActionEnum } from 'src/app/common/enums/Actions.enum';
+import { DataService } from 'src/app/services/data-service';
 
 @Component({
   selector: 'app-product-type-list',
@@ -12,12 +13,16 @@ import { ActionEnum } from 'src/app/common/enums/Actions.enum';
 export class ProductTypeListComponent extends BaseListComponent implements OnInit {
 
   constructor(
+    public dataService: DataService,
     private modalService: NzModalService,
   ) {
-    super();
+    super(dataService);
   }
 
   ngOnInit() {
+    this.urlGetItems = '/api/typeproduct/';
+    this.urlDeleteItem = '/api/typeproduct/';
+    this.getList();
   }
 
   async getList(reset = false) {

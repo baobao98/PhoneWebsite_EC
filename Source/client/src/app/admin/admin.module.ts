@@ -22,6 +22,8 @@ import en from '@angular/common/locales/en';
 import { ProductTypeListComponent } from './product-type/product-type-list/product-type-list.component';
 import { ProductTypeDetailComponent } from './product-type/product-type-detail/product-type-detail.component';
 import { SettingInformationComponent } from './setting-information/setting-information.component';
+
+
 registerLocaleData(en);
 
 @NgModule({
@@ -44,6 +46,7 @@ registerLocaleData(en);
   imports: [
     CommonModule,
     FormsModule,
+    //BrowserAnimationsModule,
     AdminRoutingModule,
     /** import ng-zorro-antd root module，you should import NgZorroAntdModule and avoid importing sub modules directly **/
     NgZorroAntdModule,
