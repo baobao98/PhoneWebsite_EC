@@ -35,11 +35,11 @@ mongoose
 
 //set up routes
 app.use('/users',Users)
-app.use('/typeproduct',typeProducts);
-app.use('/product',Products);
-app.use('/invoice',Invoice);
-app.use('/info',Info);
-app.use('/staff',Staff);
+app.use('/api/typeproduct',typeProducts);
+app.use('/api/product',Products);
+app.use('/api/invoice',Invoice);
+app.use('/api/info',Info);
+app.use('/api/staff',Staff);
 
 //Config swagger
 const swaggerOptions = {
