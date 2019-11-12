@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { throwError, timer, Observable,  } from 'rxjs';
+import { throwError, timer, Observable, } from 'rxjs';
 import { catchError, map, switchMap, debounceTime } from 'rxjs/operators';
 import { HttpClientCustom } from './http-client';
 
@@ -15,6 +15,13 @@ export class DataService {
   }
 
   async getItems(url: string, model: any) {
+    const res: any = await this.client.post(url, model).pipe(
+      catchError(this.handleError)
+    ).toPromise();
+    return res;
+  }
+
+  async getItemByID(url: string) {
     const res: any = await this.client.get(url).pipe(
       catchError(this.handleError)
     ).toPromise();
@@ -29,7 +36,7 @@ export class DataService {
   }
 
   async updateItem(url: string, model: any) {
-    const res: any = await this.client.post(url, model).pipe(
+    const res: any = await this.client.put(url, model).pipe(
       catchError(this.handleError)
     ).toPromise();
     return res;

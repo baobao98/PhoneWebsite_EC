@@ -11,7 +11,7 @@ import { ProductTypeListComponent } from './product-type/product-type-list/produ
 import { SettingInformationComponent } from './setting-information/setting-information.component';
 
 const routes: Routes = [
-  { path: '', component: AdminLayoutComponent, children: [
+  { path: 'admin', component: AdminLayoutComponent, children: [
     { path: 'dashboard', component: DashboardComponent},
     { path: 'product', component: ProductListComponent},
     { path: 'order', component: OrderListComponent},

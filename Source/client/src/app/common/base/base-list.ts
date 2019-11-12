@@ -26,14 +26,18 @@ export class BaseListComponent implements OnInit {
 
   async getList(reset = false) {
     try {
-      const res = await this.dataService.getItems(this.urlGetItems, {});
-      console.log(res);
+      const res = await this.dataService.getItems(this.urlGetItems, this.tableInfor);
+      // console.log(res);
+      this.items = res.docs;
+      this.tableInfor.total = res.totalDocs;
+
     } catch (e) { console.log(e); }
   }
 
   async deleteRecord(id: any) {
     try {
-      const res = await this.dataService.deleteItem(this.urlGetItems + `\\${id}`);
+      // const res = await this.dataService.deleteItem(this.urlDeleteItem + `\\${id}`);
+      const res = await this.dataService.deleteItem(this.urlDeleteItem + `/${id}`);
       console.log(res);
     } catch (e) { console.log(e); }
   }

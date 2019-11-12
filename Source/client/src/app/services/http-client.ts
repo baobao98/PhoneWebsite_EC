@@ -13,7 +13,7 @@ export class HttpClientCustom {
 
   createAuthorizationHeader(headers: HttpHeaders) {
     headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', 'Bearer ' + this.authSvc.getToken());
+    // headers.append('Authorization', 'Bearer ' + this.authSvc.getToken());
   }
 
   createAuthorizationHeaderForUploading(headers: HttpHeaders) {
@@ -62,6 +62,17 @@ export class HttpClientCustom {
     const headers = new HttpHeaders();
     this.createAuthorizationHeader(headers);
     return this.http.post(url, data, {
+      headers: headers,
+    });
+  }
+
+  put(url: string, data: any) {
+    // if (!this.authSvc.isLoggedIn) {
+    //   this.redirectToLoginPage();
+    // }
+    const headers = new HttpHeaders();
+    this.createAuthorizationHeader(headers);
+    return this.http.put(url, data, {
       headers: headers,
     });
   }
