@@ -15,6 +15,7 @@ var Products= require('./routes/product.js')
 var Invoice= require('./routes/invoice.js')
 var Info= require('./routes/storeInfo.js')
 var Staff= require('./routes/staff.js')
+var brand= require('./routes/brand.js')
 
 //middleware 
 app.use(bodyParser.json())
@@ -36,6 +37,7 @@ mongoose
 //set up routes
 app.use('/users',Users)
 app.use('/api/typeproduct',typeProducts);
+app.use('/api/brand',brand);
 app.use('/api/product',Products);
 app.use('/api/invoice',Invoice);
 app.use('/api/info',Info);

@@ -16,12 +16,13 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 import { DataService } from './services/data-service';
 import { HttpClientCustom } from './services/http-client';
 
+
+
 const routes: Routes = [
-  { path: 'login', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)},
+  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)},
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
   { path: 'customer', loadChildren: () => import('./customer/customer.module').then(m => m.CustomerModule)},
-  { path: 'home',   redirectTo: '/customer/home', pathMatch: 'full' },
-  { path: '',   redirectTo: '/customer', pathMatch: 'full' },
+  { path: '',   redirectTo: '/customer/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
   // {path: 'login', component: LoginComponent},
   // {path: 'register', component: RegisterComponent},
@@ -45,8 +46,8 @@ const routes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
     AuthModule,
-    AdminModule,
-    CustomerModule
+    CustomerModule,
+    AdminModule
   ],
   providers: [
     AuthenticationService,

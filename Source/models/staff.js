@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs');
 //
@@ -20,4 +21,5 @@ var staffSchema = new Schema({
 
 
 //
+staffSchema.plugin(mongoosePaginate);
 module.exports = mongoose.model('Staff', staffSchema);

@@ -2,17 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ResponseContentType } from '../common/enums/http-enums';
+import { AuthenticationService } from './authentication.service';
 //import { AuthenticationService } from './authentication.service';
 
 @Injectable()
 export class HttpClientCustom {
   constructor(private http: HttpClient
-    //, private authSvc: AuthenticationService
+    , private authSvc: AuthenticationService
     , private router: Router) { }
 
   createAuthorizationHeader(headers: HttpHeaders) {
     headers.append('Content-Type', 'application/json');
-    //headers.append('Authorization', 'Bearer ' + this.authSvc.token);
+    headers.append('Authorization', 'Bearer ' + this.authSvc.getToken());
   }
 
   createAuthorizationHeaderForUploading(headers: HttpHeaders) {

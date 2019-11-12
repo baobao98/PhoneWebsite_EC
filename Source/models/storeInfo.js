@@ -1,4 +1,5 @@
 var mongosee = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 var Schema = mongosee.Schema;
 
 var storeInfo = new Schema({
@@ -20,4 +21,5 @@ storeInfo.statics = {
 }
 
 
+storeInfo.plugin(mongoosePaginate);
 module.exports = mongosee.model('storeInfo', storeInfo);

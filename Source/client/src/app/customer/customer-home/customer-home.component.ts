@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/models/product.model';
+import { ProductCustomerService } from 'src/app/services/customer/product.customer.service';
 
 @Component({
   selector: 'app-customer-home',
@@ -7,9 +9,52 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerHomeComponent implements OnInit {
 
-  constructor() { }
+
+  proPromote: Product[];
+  proBestSeller: Product;
+  proLatest: Product[];
+
+
+  constructor(private productService: ProductCustomerService) { }
 
   ngOnInit() {
+    this.getProductPromotion();
+    this.getProBestSeller();
+    this.getProLatest();
   }
+
+  getProductPromotion() {
+    let option = {
+      pageIndex: 1,
+      pageSize: 3
+    };
+    this.productService.getProduct(option).subscribe(res => {
+      this.proPromote = res.docs;
+    });
+  }
+
+  getProBestSeller() {
+    let option = {
+      pageIndex: 1,
+      pageSize: 1
+    };
+    this.productService.getProduct(option).subscribe(res => {
+      this.proBestSeller = res.docs[0];
+      console.log(this.proBestSeller);
+    });
+  }
+
+  getProLatest() {
+    let option = {
+      pageIndex: 1,
+      pageSize: 4
+    };
+    this.productService.getProduct(option).subscribe(res => {
+      this.proLatest = res.docs;
+      // console.log(this.proLatest);
+    });
+  }
+
+
 
 }

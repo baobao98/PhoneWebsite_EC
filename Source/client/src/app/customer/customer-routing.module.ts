@@ -4,14 +4,25 @@ import { CustomerLayoutComponent } from './customer-layout/customer-layout.compo
 import { CustomerHomeComponent } from './customer-home/customer-home.component';
 import { AuthGuardService } from '../services/auth-guard.service';
 import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
+import { CustomerCategoryComponent } from './customer-category/customer-category.component';
+import { CustomerCartComponent } from './customer-cart/customer-cart.component';
+import { CustomerProductDetailComponent } from './customer-product-detail/customer-product-detail.component';
+import { CustomerLoginSocialComponent } from './customer-login-social/customer-login-social.component';
 
 //
 const routes: Routes = [
-  { path: '', component: CustomerLayoutComponent, children: [
-    { path: 'home', component: CustomerHomeComponent},
-    { path: 'profile', component: CustomerProfileComponent, canActivate: [AuthGuardService]},
-    { path: '', component: CustomerHomeComponent, pathMatch: 'full' },
-  ]}
+  {
+    path: '', component: CustomerLayoutComponent, children: [
+      { path: 'home', component: CustomerHomeComponent },
+      { path: 'category', component: CustomerCategoryComponent },
+      { path: 'detail', component: CustomerProductDetailComponent },
+      { path: 'cart', component: CustomerCartComponent },
+      { path: 'profile', component: CustomerProfileComponent },
+      { path: 'login', component: CustomerLoginSocialComponent },
+      // { path: 'profile', component: CustomerProfileComponent, canActivate: [AuthGuardService]},
+      { path: '', component: CustomerHomeComponent, pathMatch: 'full' },
+    ]
+  }
 ];
 
 @NgModule({

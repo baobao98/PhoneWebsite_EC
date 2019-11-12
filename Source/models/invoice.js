@@ -1,4 +1,5 @@
 var mongosee=require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 var Schema=mongosee.Schema;
 
 var invoiceSchema=new Schema({
@@ -20,5 +21,5 @@ var invoiceSchema=new Schema({
 })
 
 
-
+invoiceSchema.plugin(mongoosePaginate);
 module.exports=mongosee.model('Invoice',invoiceSchema);

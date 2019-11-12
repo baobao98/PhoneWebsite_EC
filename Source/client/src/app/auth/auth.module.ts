@@ -7,11 +7,13 @@ import { RegisterComponent } from './register/register.component';
 import { AuthenticationService } from '../services/authentication.service';
 import { AuthGuardService } from '../services/auth-guard.service';
 import { FormsModule } from '@angular/forms';
+import { LoginSocialComponent } from './login-social/login-social.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginSocialComponent
   ],
   imports: [
     CommonModule,

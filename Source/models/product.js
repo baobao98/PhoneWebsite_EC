@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 var Schema = mongoose.Schema;
 var ObjectId= Schema.Types.ObjectId;
 
@@ -30,10 +31,12 @@ var productSchema = new Schema({
         os: String,
     },
     typeProduct: { type: ObjectId, ref: 'typeProduct'},
+    brand: { type: ObjectId, ref: 'brand'},
     imagePaths: Array,
     quantity:Number,
     description:String,
     alias:String
 });
 
+productSchema.plugin(mongoosePaginate);
 module.exports = mongoose.model('Product',productSchema);

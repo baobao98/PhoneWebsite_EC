@@ -45,7 +45,7 @@ export class AuthenticationService {
     this.token = token; // assign token variable
   }
 
-  private getToken(): string {
+  getToken(): string {
     if (!this.token) { // check if this the token has existed
       this.token = localStorage.getItem('usertoken') // if not: get token from browser client
     }

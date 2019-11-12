@@ -8,43 +8,65 @@ const Invoice = require("../models/invoice")
 Invoices.use(cors())
 
 //create invoice
-Invoices.route('/')
-    .post((req, res) => {
-        //create new instance
-        var inv = new Invoice();
+Invoices.post('/create', (req, res) => {
+    //create new instance
+    var inv = new Invoice();
 
-        inv.receiver = req.body.receiver;
-        inv.address = req.body.address;
-        inv.note = req.body.note;
-        inv.phoneNumber = req.body.phoneNumber;
-        inv.products = req.body.products;
-        inv.state = req.body.state;
-        inv.typeOfPayment = req.body.typeOfPayment;
+    inv.receiver = req.body.receiver;
+    inv.address = req.body.address;
+    inv.note = req.body.note;
+    inv.phoneNumber = req.body.phoneNumber;
+    inv.products = req.body.products;
+    inv.state = req.body.state;
+    inv.typeOfPayment = req.body.typeOfPayment;
 
-        inv.save((err) => {
-            if (err) {
-                return res.send(err);
-            }
-            inv.products.forEach(proOrdered => {
-                Product.findById({ _id: proOrdered._id }, function (err, pro) {
-                    //if (err) console.log(err);
-                    pro.quantity = pro.quantity - proOrdered.quantity;
-                    Product.findByIdAndUpdate({ _id: pro._id }, pro, err => {
-                        //console.log(err);
-                    })
+    inv.save((err) => {
+        if (err) {
+            return res.send(err);
+        }
+        inv.products.forEach(proOrdered => {
+            Product.findById({ _id: proOrdered._id }, function (err, pro) {
+                //if (err) console.log(err);
+                pro.quantity = pro.quantity - proOrdered.quantity;
+                Product.findByIdAndUpdate({ _id: pro._id }, pro, err => {
+                    //console.log(err);
                 })
-            });
-            res.json({ message: 'Invoice created' });
-        })
+            })
+        });
+        res.json({ message: 'Invoice created' });
     })
-    // get all invoice
-    .get((req, res) => {
-        Invoice.find((err, inv) => {
-            if (err) return res.send(err);
-            //return all invoice
-            res.json(inv);
-        })
-    })
+})
+
+// get all invoice
+Invoices.post('/get', async (req, res) => {
+    try {
+        if (req.body.orderField) {
+            let orderField = req.body.orderField;
+
+            const options = {
+                page: req.body.pageIndex,
+                limit: req.body.pageSize,
+                sort: { [orderField]: (req.body.orderBy) ? req.body.orderBy : 'asc' }
+            }
+
+            const invoices = await Invoice.paginate({}, options);
+            return res.json(invoices);
+        }
+        else {
+            const options = {
+                page: (req.body.pageIndex) ? req.body.pageIndex : 1,
+                limit: (req.body.pageSize) ? req.body.pageSize : 100
+            };
+            const invoices = await Invoice.paginate({}, options);
+            return res.json(invoices);
+        }
+
+    }
+    catch (err) {
+        console.log(err);
+        return res.status(500).send(err);
+    }
+})
 //===BEGIN Filter
 
 //by state
@@ -87,11 +109,11 @@ Invoices.get('/filterByState', (req, res) => {
 
     Invoice.find({
         dateOrdered: {
-            $gte: new Date(2019,08,19),
-            $lte: new Date(2019,10,19)
+            $gte: new Date(2019, 08, 19),
+            $lte: new Date(2019, 10, 19)
         }
     }, function (err, inv) {
-        if(err) console.log(err);
+        if (err) console.log(err);
 
         res.json(inv);
     })
