@@ -15,6 +15,7 @@ import { AuthModule } from './auth/auth.module';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { DataService } from './services/data-service';
 import { HttpClientCustom } from './services/http-client';
+import { LoadScriptService } from './services/load-scripts.service';
 
 
 
@@ -53,7 +54,8 @@ const routes: Routes = [
     AuthenticationService,
     AuthGuardService,
     DataService,
-    HttpClientCustom
+    HttpClientCustom,
+    LoadScriptService
   ],
   bootstrap: [AppComponent]
 })

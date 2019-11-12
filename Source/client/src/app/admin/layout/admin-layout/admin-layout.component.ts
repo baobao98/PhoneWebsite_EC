@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { LoadScriptService } from 'src/app/services/load-scripts.service';
+declare var Quill: any;
 
 @Component({
   selector: 'app-admin-layout',
@@ -8,9 +11,25 @@ import { Component, OnInit } from '@angular/core';
 export class AdminLayoutComponent implements OnInit {
 
   isCollapsed = false;
-  constructor() { }
+  constructor(
+        // ...
+        private readonly svc: LoadScriptService,
+        @Inject(DOCUMENT) private readonly document: any
+  ) { }
 
   ngOnInit() {
+    this.svc.lazyLoadQuill().subscribe(_ => {
+      if (!Quill) {
+        Quill = this.document.defaultView.Quill;
+      }
+      this.setupQuill();
+    });
+  }
+
+  setupQuill() {
+    if (!Quill) {
+      return;
+    }
   }
 
 }
