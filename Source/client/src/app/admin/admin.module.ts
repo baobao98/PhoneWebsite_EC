@@ -21,7 +21,10 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { ProductTypeListComponent } from './product-type/product-type-list/product-type-list.component';
 import { ProductTypeDetailComponent } from './product-type/product-type-detail/product-type-detail.component';
-import { SettingInformationComponent } from './setting-information/setting-information.component';
+import { SettingInformationListComponent } from './setting-information/setting-information-list/setting-information-list.component';
+import { SettingInformationDetailComponent } from './setting-information/setting-information-detail/setting-information-detail.component';
+
+
 
 
 registerLocaleData(en);
@@ -41,7 +44,8 @@ registerLocaleData(en);
     AdminProfileComponent,
     ProductTypeListComponent,
     ProductTypeDetailComponent,
-    SettingInformationComponent,
+    SettingInformationListComponent,
+    SettingInformationDetailComponent
   ],
   imports: [
     CommonModule,
@@ -54,7 +58,8 @@ registerLocaleData(en);
   ],
   entryComponents: [
     ProductTypeDetailComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    SettingInformationDetailComponent
   ],
   /** config ng-zorro-antd i18n (language && date) **/
   providers   : [

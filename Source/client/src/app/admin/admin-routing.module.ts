@@ -8,7 +8,8 @@ import { CustomerListComponent } from './customer/customer-list/customer-list.co
 import { AuthGuardService } from '../services/auth-guard.service';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { ProductTypeListComponent } from './product-type/product-type-list/product-type-list.component';
-import { SettingInformationComponent } from './setting-information/setting-information.component';
+import { SettingInformationListComponent } from './setting-information/setting-information-list/setting-information-list.component';
+
 
 const routes: Routes = [
   { path: 'admin', component: AdminLayoutComponent, children: [
@@ -18,7 +19,7 @@ const routes: Routes = [
     { path: 'customer', component: CustomerListComponent},
     { path: 'profile', component: AdminProfileComponent},
     { path: 'product-type', component: ProductTypeListComponent},
-    { path: 'settings', component: SettingInformationComponent},
+    { path: 'settings', component: SettingInformationListComponent},
     { path: '', component: DashboardComponent, pathMatch: 'full' },
   ]}
 ];

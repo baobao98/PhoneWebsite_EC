@@ -18,6 +18,7 @@ import { CartService } from 'src/app/services/customer/cart.customer.service';
 import { categoryService } from 'src/app/services/customer/category.customer.service';
 import { ProductCustomerService } from 'src/app/services/customer/product.customer.service';
 import { CustomerLoginSocialComponent } from './customer-login-social/customer-login-social.component';
+import { CustomerCheckoutComponent } from './customer-checkout/customer-checkout.component';
 
 // config import for login
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider } from "ng4-social-login";
@@ -46,6 +47,7 @@ export function provideConfig() {
     CustomerCategoryComponent,
     CustomerProductDetailComponent,
     CustomerCartComponent,
+    CustomerCheckoutComponent,
     CustomerLoginSocialComponent
   ],
   imports: [
