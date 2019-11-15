@@ -4,6 +4,8 @@ import { NzModalRef, UploadFile } from 'ng-zorro-antd';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 import { Action } from 'rxjs/internal/scheduler/Action';
 import { ActionEnum } from 'src/app/common/enums/Actions.enum';
+import { categoryService } from 'src/app/services/customer/category.customer.service';
+import { ProductCustomerService } from 'src/app/services/customer/product.customer.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -27,7 +29,9 @@ export class ProductDetailComponent extends BaseDetailComponent implements OnIni
 
   constructor(
     public modal?: NzModalRef,
-    public fb?: FormBuilder
+    public fb?: FormBuilder,
+    public categorySvc?: categoryService,
+    public productSvc?: ProductCustomerService
   ) {
     super(modal, fb);
   }
@@ -62,7 +66,18 @@ export class ProductDetailComponent extends BaseDetailComponent implements OnIni
       sim: [],
       os: [],
     }));
+
+    if (this.params.action === ActionEnum.Update) {
+      this.getItem(this.params._id);
+    }
   }
+
+  async getItem(id: string) {
+    this.productSvc.getProductByID(id).subscribe(res => {
+      console.log(res);
+    });
+  }
+
 
   // upload image
   beforeUploadImage = (file: UploadFile): boolean => {
@@ -91,5 +106,6 @@ export class ProductDetailComponent extends BaseDetailComponent implements OnIni
     // sau khi đấy lên thành công thì gán đường dẫn vào cái formcontrol là image
     this.itemForm.get('imagePaths').setValue(''); // thây  thế cái emty bằng path của hình ảnh vừa được tải lên
   }
+
 
 }

@@ -20,6 +20,7 @@ export class ProductListComponent extends BaseListComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
   edit(model: any = null) {
