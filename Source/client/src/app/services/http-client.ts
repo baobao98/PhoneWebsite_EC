@@ -45,8 +45,8 @@ export class HttpClientCustom {
     // if (!this.authSvc.isLoggedIn) {
     //   this.redirectToLoginPage();
     // }
-    const headers = new HttpHeaders();
-    this.createAuthorizationHeader(headers);
+    let headers = new HttpHeaders();
+    headers =this.createAuthorizationHeader(headers);
     return this.http.get(url, {
       headers: headers,
     });
@@ -77,8 +77,8 @@ export class HttpClientCustom {
     // if (!this.authSvc.isLoggedIn) {
     //   this.redirectToLoginPage();
     // }
-    const headers = new HttpHeaders();
-    this.createAuthorizationHeader(headers);
+    let headers = new HttpHeaders();
+    headers = this.createAuthorizationHeader(headers);
     return this.http.put(url, data, {
       headers: headers,
     });

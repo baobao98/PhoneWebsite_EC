@@ -20,7 +20,7 @@ export class CustomerCategoryComponent implements OnInit {
 
   // pagination setting
   page = 1;
-  pageSize = 3;
+  pageSize = 6;
   pages: Array<number>;
 
   constructor(private CategoryService: categoryService, private productService: ProductCustomerService) { }
