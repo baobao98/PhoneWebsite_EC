@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product.model';
 import { ProductCustomerService } from 'src/app/services/customer/product.customer.service';
+import { CartService } from 'src/app/services/customer/cart.customer.service';
+
 
 @Component({
   selector: 'app-customer-home',
@@ -15,7 +17,7 @@ export class CustomerHomeComponent implements OnInit {
   proLatest: Product[];
 
 
-  constructor(private productService: ProductCustomerService) { }
+  constructor(private productService: ProductCustomerService, private cartService: CartService) { }
 
   ngOnInit() {
     this.getProductPromotion();
@@ -55,6 +57,13 @@ export class CustomerHomeComponent implements OnInit {
     });
   }
 
+  addToCart(){
+    this.cartService.addToCart(this.proBestSeller);
+    window.alert('You added to cart: ' + this.proBestSeller.name);
+  }
 
+  setValue(id: string) {
+    this.productService.setProductID(id);
+  }
 
 }

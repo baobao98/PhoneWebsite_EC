@@ -12,7 +12,7 @@
           <div class="float-right">
             <ul class="right_side">
               <li>
-                <a href="cart.html">
+                <a>
                   gift card
                 </a>
               </li>
@@ -67,7 +67,7 @@
                       <a class="nav-link" href="checkout.html">Product Checkout</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="cart.html">Shopping Cart</a>
+                      <a class="nav-link"  routerLink="/customer/cart">Shopping Cart</a>
                     </li>
                   </ul>
                 </li>
@@ -124,6 +124,12 @@
                 <li class="nav-item">
                   <a href="#" class="icons">
                     <i class="ti-heart" aria-hidden="true"></i>
+                  </a>
+                </li>
+
+                <li *ngIf="isLogin">
+                  <a (click)="logout()" style="color:  rgb(230, 142, 11);" class="icons">
+                    <i aria-hidden="true">Log out</i>
                   </a>
                 </li>
               </ul>

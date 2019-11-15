@@ -91,6 +91,8 @@ export class AuthenticationService {
     return this.token;
   }
 
+
+
   public getUserDetails(): UserDetails {
     const token = this.getToken(); // first get the token from localStorage
     let payload;
@@ -205,7 +207,9 @@ export class AuthenticationService {
       map((data: TokenResponse) => {
         if (data.token) {
           this.saveTokenAdmin(data.token);
-        } return data
+        }
+        // console.log(data);
+        return data;
       })
     )
     return request;

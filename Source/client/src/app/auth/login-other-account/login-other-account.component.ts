@@ -62,9 +62,12 @@ export class LoginOtherAccountComponent implements OnInit {
   }
 
   googleLogin() {
-    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then((userData) => {
-      console.log(userData);
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(async (userData) => {
       this.user = userData;
+      await this.buildArg(userData);
+      this.register();
+      // console.log(this.user);
+      this.router.navigateByUrl('/customer/home');
     });
   }
 }

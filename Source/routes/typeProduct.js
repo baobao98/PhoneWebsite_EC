@@ -2,9 +2,16 @@ const express = require('express')
 const typeProducts = express.Router()
 const jwt = require('jsonwebtoken')
 const cors = require("cors")
+// const checkAdmin = require('../middlewares/checkRole');
+
+// middleware custome
+const { authenRole } = require('../middlewares/index');
 
 const typeProduct = require("../models/typeProduct")
 typeProducts.use(cors())
+
+//check authentication 
+typeProducts.use(authenRole.CheckStaff);
 
 process.env.SECRET_KEY = 'huynbao'
 
@@ -31,11 +38,7 @@ typeProducts.post('/create', (req, res) => {
 // get all types product
 typeProducts.post('/get', async (req, res) => {
     try {
-        // var decoded = await jwt.verify(req.headers['Authorization'], process.env.SECRET_KEY)
-        // var token = await req.headers['authorization'];
-        // console.log(JSON.stringify(await req.headers));
-        // console.log(token);
-        // console.log(await jwt.verify(req.headers['authorization'], process.env.SECRET_KEY));
+       
         if (req.body.orderField) {
             let orderField = req.body.orderField;
 
@@ -45,16 +48,22 @@ typeProducts.post('/get', async (req, res) => {
                 sort: { [orderField]: (req.body.orderBy) ? req.body.orderBy : 'asc' }
             }
 
-            const types = await typeProduct.paginate({}, options);
-            return res.json(types);
+            // const types = await typeProduct.paginate({}, options);
+            // return res.json(types);
+            typeProduct.paginate({}, options, (err, type) => {
+                res.json(type);
+            })
         }
         else {
             const options = {
                 page: (req.body.pageIndex) ? req.body.pageIndex : 1,
                 limit: (req.body.pageSize) ? req.body.pageSize : 50
             };
-            const types = await typeProduct.paginate({}, options);
-            return res.json(types);
+            // const types = await typeProduct.paginate({}, options);
+            // return res.json(types);
+            typeProduct.paginate({}, options, (err, type) => {
+                res.json(type);
+            })
         }
 
     }

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Item } from 'src/app/entities/item.entity';
 import { CartService } from 'src/app/services/customer/cart.customer.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-customer-checkout',
@@ -16,7 +17,8 @@ export class CustomerCheckoutComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -48,10 +50,12 @@ export class CustomerCheckoutComponent implements OnInit {
       products: this.items
     }
     // console.log(data);
-    this.cartService.saveInvoice(data).subscribe(res => {
+    this.cartService.saveInvoice(data).subscribe(async res => {
       console.log(res);
+      await window.alert('Ordered successfully. We would send email to confirm you !!!');
+      this.router.navigateByUrl('/customer/home');
       this.cartService.destroy();
-    })
+    });
   }
 
   refresh() {

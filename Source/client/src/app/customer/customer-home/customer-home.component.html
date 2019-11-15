@@ -145,10 +145,10 @@
           <h5 class="text-uppercase">collection of 2019</h5>
           <h3 class="text-uppercase">BEST SELLER</h3>
           <div class="product-img">
-            <img class="img-fluid" src='../assets/products/img/{{proBestSeller.imagePaths[0]}}' alt="" />
+            <img routerLink="/detail" (click)="setValue(proBestSeller._id)"  class="img-fluid" src='../assets/products/img/{{proBestSeller.imagePaths[0]}}' alt="" />
           </div>
           <h4>{{proBestSeller.price}}</h4>
-          <a href="#" class="main_btn">Add to cart</a>
+          <a (click)="addToCart()" class="main_btn">Add to cart</a>
         </div>
       </div>
 
@@ -171,7 +171,7 @@
                 </div>
               </div>
               <div class="product-btm">
-                <a href="#" class="d-block">
+                <a routerLink="/detail" (click)="setValue(pro._id)" class="d-block">
                   <h4>{{pro.name}}</h4>
                 </a>
                 <div class="mt-3">

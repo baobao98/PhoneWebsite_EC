@@ -12,6 +12,7 @@
             <input type="password" class="form-control" name="password" placeholder="Enter Password"
             [(ngModel)]="credentials.password">
           </div>
+          <div *ngIf="this.wrong" style="color: red; align-content: center;"><i>wrong password or user name</i> </div>
           <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
     </div>

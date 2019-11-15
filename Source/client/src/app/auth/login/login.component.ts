@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  wrong = false;
 
   credentials: TokenPayload = {
     _id: '',
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private auth: AuthenticationService,
     private router: Router
-    ) {}
+  ) { }
 
   ngOnInit() {
 
@@ -32,8 +33,13 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.auth.login(this.credentials).subscribe(
-      () => {
-        this.router.navigateByUrl('/customer/home');
+      (res) => {
+        if (res.error) {
+          this.wrong = true;
+        } else {
+          this.router.navigateByUrl('/customer/home');
+        }
+
       },
       err => {
         console.error(err);

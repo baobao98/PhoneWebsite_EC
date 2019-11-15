@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { LoadScriptService } from 'src/app/services/load-scripts.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 declare var Quill: any;
 
 @Component({
@@ -13,6 +14,7 @@ export class AdminLayoutComponent implements OnInit {
   isCollapsed = false;
   constructor(
         // ...
+        private auth: AuthenticationService,
         private readonly svc: LoadScriptService,
         @Inject(DOCUMENT) private readonly document: any
   ) { }
@@ -30,6 +32,9 @@ export class AdminLayoutComponent implements OnInit {
     if (!Quill) {
       return;
     }
+  }
+  logout(): void {
+    this.auth.logoutAdmin();
   }
 
 }
