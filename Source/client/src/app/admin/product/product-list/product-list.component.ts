@@ -26,7 +26,7 @@ export class ProductListComponent extends BaseListComponent implements OnInit {
     const modal = this.modalService.create({
       nzTitle: model && model.id ? 'Sửa loại sản phẩm' : 'Thêm loại sản phẩm',
       nzMaskClosable: false,
-      nzWidth: 500,
+      nzWidth: 800,
       nzContent: ProductDetailComponent,
       nzComponentParams: {
         params: {
