@@ -7,7 +7,7 @@ import { CustomerLayoutComponent } from './customer-layout/customer-layout.compo
 import { CustomerLayoutFooterComponent } from './customer-layout/customer-layout-footer/customer-layout-footer.component';
 import { CustomerLayoutHeaderComponent } from './customer-layout/customer-layout-header/customer-layout-header.component';
 import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomerCategoryComponent } from './customer-category/customer-category.component';
 import { CustomerProductDetailComponent } from './customer-product-detail/customer-product-detail.component';
 import { CustomerCartComponent } from './customer-cart/customer-cart.component';
@@ -54,6 +54,7 @@ export function provideConfig() {
     CommonModule,
     FormsModule,
     CustomerRoutingModule,
+    ReactiveFormsModule,
     SocialLoginModule
   ],
   providers: [

@@ -5,22 +5,24 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { OrderListComponent } from './order/order-list/order-list.component';
 import { CustomerListComponent } from './customer/customer-list/customer-list.component';
-import { AuthGuardService } from '../services/auth-guard.service';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { ProductTypeListComponent } from './product-type/product-type-list/product-type-list.component';
 import { SettingInformationListComponent } from './setting-information/setting-information-list/setting-information-list.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { AuthGuardAdminService } from '../services/auth-guard-admin.service';
 
 
 const routes: Routes = [
+  { path: 'login', component: AdminLoginComponent},
   { path: 'admin', component: AdminLayoutComponent, children: [
-    { path: 'dashboard', component: DashboardComponent},
-    { path: 'product', component: ProductListComponent},
-    { path: 'order', component: OrderListComponent},
-    { path: 'customer', component: CustomerListComponent},
-    { path: 'profile', component: AdminProfileComponent},
-    { path: 'product-type', component: ProductTypeListComponent},
-    { path: 'settings', component: SettingInformationListComponent},
-    { path: '', component: DashboardComponent, pathMatch: 'full' },
+    { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardAdminService]},
+    { path: 'product', component: ProductListComponent, canActivate: [AuthGuardAdminService]},
+    { path: 'order', component: OrderListComponent, canActivate: [AuthGuardAdminService]},
+    { path: 'customer', component: CustomerListComponent, canActivate: [AuthGuardAdminService]},
+    { path: 'profile', component: AdminProfileComponent, canActivate: [AuthGuardAdminService]},
+    { path: 'product-type', component: ProductTypeListComponent, canActivate: [AuthGuardAdminService]},
+    { path: 'settings', component: SettingInformationListComponent, canActivate: [AuthGuardAdminService]},
+    { path: '', component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuardAdminService] },
   ]}
 ];
 

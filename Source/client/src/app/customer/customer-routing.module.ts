@@ -19,9 +19,8 @@ const routes: Routes = [
       { path: 'detail', component: CustomerProductDetailComponent },
       { path: 'cart', component: CustomerCartComponent },
       { path: 'checkout', component: CustomerCheckoutComponent },
-      { path: 'profile', component: CustomerProfileComponent },
+      { path: 'profile', component: CustomerProfileComponent, canActivate: [AuthGuardService] },
       { path: 'login', component: CustomerLoginSocialComponent },
-      // { path: 'profile', component: CustomerProfileComponent, canActivate: [AuthGuardService]},
       { path: '', component: CustomerHomeComponent, pathMatch: 'full' },
     ]
   }

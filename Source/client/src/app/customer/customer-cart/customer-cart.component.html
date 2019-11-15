@@ -21,7 +21,7 @@
                     <img style="width: 26%;" src='../assets/products/img/{{item.product.imagePaths[0]}}' alt="" />
                 </div>
               </td>
-              <td>
+              <td style="width: 30%;">
                   <div class="media-body">
                       <p>{{item.product.name}}</p>
                     </div>
@@ -52,7 +52,7 @@
               </td>
               <!-- total col -->
               <td>
-                <h5>${{item.product.price * item.quantity| number}} VND</h5>
+                <h5>{{item.product.price * item.quantity| number}} VND</h5>
               </td>
             </tr>
 

@@ -35,7 +35,7 @@ mongoose
 .catch(err=> console.log(err))
 
 //set up routes
-app.use('/users',Users)
+app.use('/api/users',Users)
 app.use('/api/typeproduct',typeProducts);
 app.use('/api/brand',brand);
 app.use('/api/product',Products);

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Item } from 'src/app/entities/item.entity';
 import { Product } from 'src/app/models/product.model';
+import { HttpClient } from '@angular/common/http';
 // import { ProductCustomerService } from 'src/app/services/customer/product.customer.service';
 
 @Injectable()
@@ -9,7 +10,7 @@ export class CartService {
   total: number = 0;
   // product: Product;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   addToCart(pro: Product) {
     var itemAdd: Item = {
@@ -76,6 +77,18 @@ export class CartService {
     }
     localStorage.setItem('cartBH', JSON.stringify(cart));
     this.loadCart();
+  }
+
+  removeItem(name: string): void {
+    localStorage.removeItem(name);
+  }
+
+  destroy(): void {
+    localStorage.clear();
+  }
+
+  saveInvoice(data): any {
+    return this.http.post('/api/invoice/create', data);
   }
 
 

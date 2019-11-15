@@ -25,7 +25,7 @@ Invoices.post('/create', (req, res) => {
             return res.send(err);
         }
         inv.products.forEach(proOrdered => {
-            Product.findById({ _id: proOrdered._id }, function (err, pro) {
+            Product.findById({ _id: proOrdered.product._id }, function (err, pro) {
                 //if (err) console.log(err);
                 pro.quantity = pro.quantity - proOrdered.quantity;
                 Product.findByIdAndUpdate({ _id: pro._id }, pro, err => {

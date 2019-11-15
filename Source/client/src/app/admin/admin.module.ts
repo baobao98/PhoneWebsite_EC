@@ -23,6 +23,7 @@ import { ProductTypeListComponent } from './product-type/product-type-list/produ
 import { ProductTypeDetailComponent } from './product-type/product-type-detail/product-type-detail.component';
 import { SettingInformationListComponent } from './setting-information/setting-information-list/setting-information-list.component';
 import { SettingInformationDetailComponent } from './setting-information/setting-information-detail/setting-information-detail.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 
 
 
@@ -45,7 +46,8 @@ registerLocaleData(en);
     ProductTypeListComponent,
     ProductTypeDetailComponent,
     SettingInformationListComponent,
-    SettingInformationDetailComponent
+    SettingInformationDetailComponent,
+    AdminLoginComponent
   ],
   imports: [
     CommonModule,

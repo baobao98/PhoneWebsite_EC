@@ -83,24 +83,28 @@ Staffs.post('/login', (req, res) => {
     Staff.findOne({
         username: req.body.username
     })
-        .then(staff => {
-            if (staff) {
-                if (bcrypt.compareSync(req.body.password, staff.password)) {
+        .then(user => {
+            if (user) {
+                // check password from user request
+                if (bcrypt.compareSync(req.body.password, user.password)) {
                     const payload = {
-                        _id: staff._id,
-                        username: staff.username,
-                        role: staff.role,
+                        username: user.username,
+                        role: user.role,
                         email: user.email
                     }
+                    // create token from jwt
                     let token = jwt.sign(payload, process.env.SECRET_KEY, {
                         expiresIn: 1440
                     })
+                    // response token
                     res.json({ token: token })
                 } else {
-                    res.json({ error: "Staff does not exist" })
+                    // response user don't exist | error : wrong password
+                    res.json({ error: "User does not exist" })
                 }
             } else {
-                res.json({ error: "Staff does not exist" })
+                // response user don't exit | error: wrong user name
+                res.json({ error: "User does not exist" })
             }
         })
         .catch(err => {
@@ -112,7 +116,7 @@ Staffs.get('/profile', (req, res) => {
     var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
 
     Staff.findOne({
-        _id: decoded._id
+        username: decoded.username
     })
         .then(staff => {
             if (staff) {

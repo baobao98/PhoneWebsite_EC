@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
   register() {
     this.auth.register(this.credentails).subscribe(
       () => {
-        this.router.navigateByUrl('/customer/profile');
+        this.router.navigateByUrl('/login');
       },
       err => {
         console.error(err);

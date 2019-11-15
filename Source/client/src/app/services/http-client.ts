@@ -3,18 +3,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ResponseContentType } from '../common/enums/http-enums';
 import { AuthenticationService } from './authentication.service';
-//import { AuthenticationService } from './authentication.service';
+
 
 @Injectable()
 export class HttpClientCustom {
+  tokenValue: any;
   constructor(private http: HttpClient
     , private authSvc: AuthenticationService
     , private router: Router) { }
 
-  createAuthorizationHeader(headers: HttpHeaders) {
-    headers.append('Content-Type', 'application/json');
-    // headers.append('Authorization', 'Bearer ' + this.authSvc.getToken());
-  }
+
 
   createAuthorizationHeaderForUploading(headers: HttpHeaders) {
     //headers.append('Authorization', 'Bearer ' + this.authSvc.token);
@@ -54,13 +52,22 @@ export class HttpClientCustom {
     });
 
   }
+  createAuthorizationHeader(headers: HttpHeaders) {
+    headers = headers.append('Content-Type', 'application/json');
+    headers = headers.append('Authorization', this.authSvc.getTokenAdmin());
+    // this.tokenValue = JSON.parse(this.authSvc.getTokenAdmin());
+    // headers.append('Authorization', this.tokenValue);
+    return headers;
+  }
 
   post(url: string, data: any) {
     // if (!this.authSvc.isLoggedIn) {
     //   this.redirectToLoginPage();
     // }
-    const headers = new HttpHeaders();
-    this.createAuthorizationHeader(headers);
+    // .append('Authorization', JSON.parse(this.authSvc.getTokenAdmin()));
+
+    let headers = new HttpHeaders();
+    headers = this.createAuthorizationHeader(headers);
     return this.http.post(url, data, {
       headers: headers,
     });
@@ -92,8 +99,8 @@ export class HttpClientCustom {
     // if (!this.authSvc.isLoggedIn) {
     //   this.redirectToLoginPage();
     // }
-    const headers = new HttpHeaders();
-    this.createAuthorizationHeaderForUploading(headers);
+    const headers = new HttpHeaders()
+    // this.createAuthorizationHeaderForUploading(headers);
     return this.http.post(url, data, {
       headers: headers,
     });

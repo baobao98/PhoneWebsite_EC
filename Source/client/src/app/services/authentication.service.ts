@@ -18,6 +18,20 @@ export interface UserDetails {
   iat: number
 }
 
+export interface StaffDetails {
+  _id: string
+  name: string
+  username: string
+  password: string
+  role: string
+  email: string
+  avatar: string
+  gender: boolean
+  dateOfBirth: Date
+  exp: number
+  iat: number
+}
+
 interface TokenResponse {   //token from the backend to frontend
   token: string
 }
@@ -34,62 +48,143 @@ export interface TokenPayload {
   birthday: Date
 }
 
+export interface TokenPayloadAdmin {
+  _id: string
+  name: string
+  username: string
+  password: string
+  role: string
+  email: string
+  avatar: string
+  gender: boolean
+  dateOfBirth: Date
+}
+
 @Injectable()
 export class AuthenticationService {
   private token: string
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  private saveToken(token: string): void {
-    localStorage.setItem('usertoken', token) //save token at storage browser in client
+  saveToken(token: string): void {
+    localStorage.setItem('usertoken', token); // save token at storage browser in client
+    this.token = token; // assign token variable
+  }
+
+  saveTokenAdmin(token: string): void {
+    localStorage.setItem('admintoken', token); // save token at storage browser in client
     this.token = token; // assign token variable
   }
 
   getToken(): string {
     if (!this.token) { // check if this the token has existed
-      this.token = localStorage.getItem('usertoken') // if not: get token from browser client
+      this.token = localStorage.getItem('usertoken'); // if not: get token from browser client
     }
-    return this.token
+    return this.token;
+  }
+
+
+  getTokenAdmin(): string {
+    if (!this.token) { // check if this the token has existed
+      this.token = localStorage.getItem('admintoken'); // if not: get token from browser client
+    }
+    return this.token;
   }
 
   public getUserDetails(): UserDetails {
-    const token = this.getToken(); //first get the token from localStorage
-    let payload
+    const token = this.getToken(); // first get the token from localStorage
+    let payload;
     if (token) {
       payload = token.split('.')[1] //
-      payload = window.atob(payload) //decode base64 to string
-      return JSON.parse(payload)  // then convert the string decoded to json
+      payload = window.atob(payload) // decode base64 to string
+      return JSON.parse(payload);  // then convert the string decoded to json
     } else {
-      return null
+      return null;
     }
   }
 
-  //check user still alive or not
-  public isLoggedIn(): boolean {
-    const user = this.getUserDetails();
-    if (user) {
-      return user.exp > Date.now() / 1000
+  public getStaffDetails(): StaffDetails {
+    const token = this.getTokenAdmin(); // first get the token from localStorage
+    let payload;
+    if (token) {
+      payload = token.split('.')[1] //
+      payload = window.atob(payload) // decode base64 to string
+      return JSON.parse(payload);  // then convert the string decoded to json
     } else {
-      return false
+      return null;
+    }
+  }
+
+  // public checkUser(): any {
+  //   const token = this.getToken(); // first get the token from localStorage
+  //   let payload
+  //   if (token) {
+  //     payload = token.split('.')[1] //
+  //     payload = window.atob(payload) // decode base64 to string
+  //     return JSON.parse(payload);  // then convert the string decoded to json
+  //   } else {
+  //     return null;
+  //   }
+  // }
+
+
+
+  // check user still alive or not
+  public isLoggedIn(): boolean {
+    const user = this.getUserDetails(); // code cu
+    // const user = this.checkUser();
+    if (user) {
+      return user.exp > Date.now() / 1000; // code cu
+      // console.log(user);
+      // return true;
+    } else {
+      return false;
+    }
+  }
+
+  public isLoggedInAdmin(): boolean {
+    const admin = this.getStaffDetails(); // code cu
+    // const user = this.checkUser();
+    if (admin) {
+      return admin.exp > Date.now() / 1000; // code cu
+
+      // return true;
+    } else {
+      return false;
     }
   }
 
   public register(user: TokenPayload): Observable<any> {
-    const base = this.http.post('/users/register', user)
+    const base = this.http.post('/api/users/register', user)
 
     const request = base.pipe(
       map((data: TokenResponse) => {
         if (data.token) {
           this.saveToken(data.token)
         }
-        return data
+        return data;
       })
     )
-    return request
+    return request;
   }
 
+  public registersocial(user: TokenPayload): Observable<any> {
+    const base = this.http.post('/api/users/registersocial', user)
+
+    const request = base.pipe(
+      map((data: TokenResponse) => {
+        if (data.token) {
+          this.saveToken(data.token)
+        }
+        return data;
+      })
+    )
+    return request;
+  }
+
+  // request to server to ask for token & then save token to local storage
   public login(user: TokenPayload): Observable<any> {
-    const base = this.http.post('/users/login', user)
+    const base = this.http.post('/api/users/login', user);
 
     const request = base.pipe(
       map((data: TokenResponse) => {
@@ -99,18 +194,38 @@ export class AuthenticationService {
       })
     )
 
-    return request
+
+    return request;
+  }
+
+  public loginAdmin(staff: TokenPayloadAdmin): Observable<any> {
+    const base = this.http.post('/api/staff/login', staff);
+
+    const request = base.pipe(
+      map((data: TokenResponse) => {
+        if (data.token) {
+          this.saveTokenAdmin(data.token);
+        } return data
+      })
+    )
+    return request;
   }
 
   public profile(): Observable<any> {
-    return this.http.get(`/users/profile`, {
+    return this.http.get(`/api/users/profile`, {
       headers: { Authorization: ` ${this.getToken()}` }
-    })
+    });
   }
 
   public logout(): void {
-    this.token = ''
-    window.localStorage.removeItem('usertoken')
-    this.router.navigateByUrl('/')
+    this.token = '';
+    window.localStorage.removeItem('usertoken');
+    this.router.navigateByUrl('/');
+  }
+
+  public logoutAdmin(): void {
+    this.token = '';
+    window.localStorage.removeItem('admintoken');
+    this.router.navigateByUrl('/admin/login');
   }
 }

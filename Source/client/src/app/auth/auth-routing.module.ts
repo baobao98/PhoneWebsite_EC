@@ -2,10 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { LoginSocialComponent } from './login-social/login-social.component';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 
 const routes: Routes = [
-  { path: 'login-social', component: LoginSocialComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 ];

@@ -7,7 +7,7 @@ var bcrypt = require('bcrypt-nodejs');
 var staffSchema = new Schema({
     name: String,
     username: { type: String, required: true, index:{ unique:true}},
-    password: { type: String, required: true, select: false},
+    password: { type: String, required: true},
     role: {
         type: String,
         enum: ['staff','admin'],

@@ -1,9 +1,12 @@
 const express = require('express')
 const typeProducts = express.Router()
+const jwt = require('jsonwebtoken')
 const cors = require("cors")
 
 const typeProduct = require("../models/typeProduct")
 typeProducts.use(cors())
+
+process.env.SECRET_KEY = 'huynbao'
 
 //create type product
 typeProducts.post('/create', (req, res) => {
@@ -28,6 +31,11 @@ typeProducts.post('/create', (req, res) => {
 // get all types product
 typeProducts.post('/get', async (req, res) => {
     try {
+        // var decoded = await jwt.verify(req.headers['Authorization'], process.env.SECRET_KEY)
+        // var token = await req.headers['authorization'];
+        // console.log(JSON.stringify(await req.headers));
+        // console.log(token);
+        // console.log(await jwt.verify(req.headers['authorization'], process.env.SECRET_KEY));
         if (req.body.orderField) {
             let orderField = req.body.orderField;
 
@@ -72,7 +80,7 @@ typeProducts.post('/test', (req, res) => {
             //     [options.orderField]: options.orderBy
             // })
             .exec((err, type) => {
-                if(err) console.log(err);
+                if (err) console.log(err);
                 typeProduct.count().exec((err, count) => {
                     if (err) console.log(err);
                     res.json({ "docs": type, "totalDocs": count, "totalPages": count / options.limit });

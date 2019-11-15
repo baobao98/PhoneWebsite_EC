@@ -8,10 +8,10 @@ var invoiceSchema=new Schema({
     note:String,
     phoneNumber:{type: String, required:true },
     products:{type: Array, required: true},
-    state: Boolean,
+    state: {Boolean, default: false},
     typeOfPayment:{
         type: String,
-        enum:['COD','paypal','mastercard','visa','momo'],
+        enum:['COD','paypal'],
         required:true,
     },
     dateOrdered:{
