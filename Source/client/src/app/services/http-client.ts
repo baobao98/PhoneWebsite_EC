@@ -88,8 +88,8 @@ export class HttpClientCustom {
     // if (!this.authSvc.isLoggedIn) {
     //   this.redirectToLoginPage();
     // }
-    const headers = new HttpHeaders();
-    this.createAuthorizationHeader(headers);
+    let headers = new HttpHeaders();
+    headers = this.createAuthorizationHeader(headers);
     return this.http.delete(url, {
       headers: headers,
     });
