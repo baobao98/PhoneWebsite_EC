@@ -57,4 +57,38 @@ brands.post('/get',async (req, res) => {
 
 })
 
+brands.route('/:brand_id')
+    .get((req, res) => {
+        brand.findById(req.params.brand_id, function (err, brand) {
+            if (err) return res.send(err);
+            res.json(brand);
+        })
+    })
+    .put((req, res) => {
+        brand.findById(req.params.brand_id, (err, brand) => {
+            if (err) return res.send(err);
+
+            
+            if (req.body.name) brand.name = req.body.name;
+            if (req.body.no) brand.no = req.body.no;
+            if (req.body.alias) brand.alias = req.body.alias;
+
+            brand.save(err => {
+                if (err) return res.send(err);
+
+                //return a message 
+                res.json({ message: 'brand updated' })
+            })
+        })
+    })
+    .delete((req, res) => {
+        brand.remove({
+            _id: req.params.brand_id
+        }, err => {
+            if (err) return res.send(err)
+            res.json({ message: 'successfully deleted' })
+        })
+    })
+
+
 module.exports = brands;

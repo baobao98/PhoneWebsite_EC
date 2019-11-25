@@ -20,12 +20,12 @@ export class AdminLayoutComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.svc.lazyLoadQuill().subscribe(_ => {
-      if (!Quill) {
-        Quill = this.document.defaultView.Quill;
-      }
-      this.setupQuill();
-    });
+    // this.svc.lazyLoadQuill().subscribe(_ => {
+    //   if (!Quill) {
+    //     Quill = this.document.defaultView.Quill;
+    //   }
+    //   this.setupQuill();
+    // });
   }
 
   setupQuill() {

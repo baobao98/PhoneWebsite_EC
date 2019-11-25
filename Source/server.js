@@ -1,6 +1,7 @@
 var express= require('express')
 var cors = require('cors')
 var bodyParser = require('body-parser')
+const path = require('path');
 var app = express(); 
 var mongoose = require('mongoose')
 const swaggerJsDoc = require("swagger-jsdoc");
@@ -24,9 +25,9 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 //connectiong string 
 //-----localhost
-const mongoURI ='mongodb://localhost/phoneShopDB';
+// const mongoURI ='mongodb://localhost/phoneShopDB';
 //-----cloud host
-// const mongoURI= "mongodb+srv://baobao:youonlylionkul@bbcluster0-2u8x9.mongodb.net/admin?retryWrites=true&w=majority";
+const mongoURI="mongodb+srv://baobao:youonlylionkul@bbcluster0-2u8x9.mongodb.net/PhoneShopDB?retryWrites=true&w=majority"
 
 //connect to mongo dbs
 mongoose
@@ -42,7 +43,7 @@ app.use('/api/product',Products);
 app.use('/api/invoice',Invoice);
 app.use('/api/info',Info);
 app.use('/api/staff',Staff);
-
+app.use('/assets',express.static(path.join(__dirname, 'assets')));
 //Config swagger
 const swaggerOptions = {
   swaggerDefinition: swaggerDes,

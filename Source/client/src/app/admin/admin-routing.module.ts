@@ -10,6 +10,7 @@ import { ProductTypeListComponent } from './product-type/product-type-list/produ
 import { SettingInformationListComponent } from './setting-information/setting-information-list/setting-information-list.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AuthGuardAdminService } from '../services/auth-guard-admin.service';
+import { BrandListComponent } from './brand/brand-list/brand-list.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminLayoutComponent, children: [
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardAdminService]},
     { path: 'product', component: ProductListComponent, canActivate: [AuthGuardAdminService]},
+    { path: 'brand', component: BrandListComponent, canActivate: [AuthGuardAdminService]},
     { path: 'order', component: OrderListComponent, canActivate: [AuthGuardAdminService]},
     { path: 'customer', component: CustomerListComponent, canActivate: [AuthGuardAdminService]},
     { path: 'profile', component: AdminProfileComponent, canActivate: [AuthGuardAdminService]},

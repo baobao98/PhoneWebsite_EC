@@ -27,12 +27,21 @@ export class RegisterComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    if (this.auth.isLoggedIn()) {
+      this.router.navigateByUrl('/customer/home');
+    }
 
   }
   register() {
     this.auth.register(this.credentails).subscribe(
-      () => {
-        this.router.navigateByUrl('/login');
+      (res) => {
+        if (res.status === 'success') {
+          window.alert('Registered successfully')
+          this.router.navigateByUrl('/login');
+        }
+        else {
+          window.alert(res.message);
+        }
       },
       err => {
         console.error(err);

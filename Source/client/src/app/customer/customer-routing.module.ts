@@ -16,7 +16,7 @@ const routes: Routes = [
     path: '', component: CustomerLayoutComponent, children: [
       { path: 'home', component: CustomerHomeComponent },
       { path: 'category', component: CustomerCategoryComponent },
-      { path: 'detail', component: CustomerProductDetailComponent },
+      { path: 'detail/:detailpro', component: CustomerProductDetailComponent },
       { path: 'cart', component: CustomerCartComponent },
       { path: 'checkout', component: CustomerCheckoutComponent },
       { path: 'profile', component: CustomerProfileComponent, canActivate: [AuthGuardService] },

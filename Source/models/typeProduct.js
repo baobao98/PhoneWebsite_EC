@@ -12,4 +12,4 @@ var typeProductSchema= new Schema({
 })
 
 typeProductSchema.plugin(mongoosePaginate);
-module.exports = mongoose.model('TypeProduct',typeProductSchema);
+module.exports = mongoose.model('typeproduct',typeProductSchema);

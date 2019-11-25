@@ -138,8 +138,8 @@ export class CustomerCategoryComponent implements OnInit {
     this.filter();
   }
 
-  setValue(id: string) {
-    this.productService.setProductID(id);
-  }
+  // setValue(id: string) {
+  //   this.productService.setProductID(id);
+  // }
 
 }

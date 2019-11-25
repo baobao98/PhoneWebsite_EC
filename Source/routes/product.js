@@ -5,6 +5,9 @@ var mongoose = require('mongoose');
 const Product = require("../models/product")
 const TypeProduct = require("../models/typeProduct")
 const brand = require("../models/brand")
+const {upload} = require("../middlewares/multer")
+// var multer = require('multer');
+// var fs = require('fs');
 
 Products.use(cors())
 
@@ -47,6 +50,37 @@ Products.post('/create', async (req, res) => {
             });
     })
 })
+
+// upload section 
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         var dir = 'uploads';
+//         if (!fs.existsSync(dir)){
+//             fs.mkdirSync(dir);
+//         }
+//         cb(null, dir);
+//     },
+//     filename: function (req, file, cb) {
+//         // cb(null, new Date().toISOString() + file.originalname);
+//         const dotIndex = file.originalname.lastIndexOf('.');
+//         const fileExtension = file.originalname.substring(dotIndex + 1);
+//         cb(null, `${Date.now()}.${fileExtension}`)
+//     }
+// });
+
+// const upload = multer({
+//     storage: storage,
+//     limits: {
+//         fileSize: 1024 * 1024 * 5
+//     }
+// });
+
+Products.post('/upload', upload.single('productImage'), async (req, res) => {
+    // console.log(req.file);
+    //co return ji ve dau men a 
+    res.json(req.file.filename);
+})
+
 // get product
 Products.post('/get', async (req, res) => {
     try {
@@ -67,8 +101,17 @@ Products.post('/get', async (req, res) => {
                 page: (req.body.pageIndex) ? req.body.pageIndex : 1,
                 limit: (req.body.pageSize) ? req.body.pageSize : 100
             };
-            const products = await Product.paginate({}, options);
-            return res.json(products);
+            // const products = await Product.paginate({}, options);
+            // const products = await Product.populate('typeProduct').paginate({}, options);
+            Product.find()
+                .populate('brand')
+                .populate('typeProduct')
+                .exec(async (err, data) => {
+                    if (err) return console.log(err);
+                    var pro = await PaginatorArray(data, options.page, options.limit);
+                    res.json({ "docs": pro.data, "totalDocs": pro.total, "totalPages": pro.total_pages });
+                })
+
         }
 
     }
@@ -96,14 +139,14 @@ Products.post('/filter', async (req, res) => {
 
     if (req.body.typeproduct_id) {
         if (req.body.brand_id) {
-            Product.find({ $and: [{ typeProduct: req.body.typeproduct_id}, { brand: req.body.brand_id}] }).populate('products').populate('brand').then(async data => {
+            Product.find({ $and: [{ typeProduct: req.body.typeproduct_id }, { brand: req.body.brand_id }] }).populate('products').populate('brand').then(async data => {
                 var pro = await PaginatorArray(data, options.page, options.limit);
                 res.json({ "docs": pro.data, "totalDocs": pro.total, "totalPages": pro.total_pages });
             }).catch(err => {
                 console.log(err)
             })
         } else {
-            Product.find({ typeProduct: req.body.typeproduct_id}).populate('products').then(async data => {
+            Product.find({ typeProduct: req.body.typeproduct_id }).populate('products').then(async data => {
                 var pro = await PaginatorArray(data, options.page, options.limit);
                 res.json({ "docs": pro.data, "totalDocs": pro.total, "totalPages": pro.total_pages });
             }).catch(err => {
@@ -111,7 +154,7 @@ Products.post('/filter', async (req, res) => {
             })
         }
     } else {
-        Product.find({ brand: req.body.brand_id}).populate('brand').then(async data => {
+        Product.find({ brand: req.body.brand_id }).populate('brand').then(async data => {
             var pro = await PaginatorArray(data, options.page, options.limit);
             res.json({ "docs": pro.data, "totalDocs": pro.total, "totalPages": pro.total_pages });
         }).catch(err => {

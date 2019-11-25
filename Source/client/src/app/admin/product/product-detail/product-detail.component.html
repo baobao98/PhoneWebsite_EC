@@ -23,7 +23,15 @@
     <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="typeProduct">Type Product</nz-form-label>
     <nz-form-control [nzSm]="18" [nzXs]="24">
       <nz-select formControlName="typeProduct" nzAllowClear nzPlaceHolder="Choose type product">
-        <nz-option *ngFor="let item of typeProducts" [nzValue]="item.name" [nzLabel]="item.id"></nz-option>
+        <nz-option *ngFor="let item of typeProducts" [nzValue]="item._id" [nzLabel]="item.name"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="brand">Brand</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="24">
+      <nz-select formControlName="brand" nzAllowClear nzPlaceHolder="Choose brand">
+        <nz-option *ngFor="let item of brands" [nzValue]="item._id" [nzLabel]="item.name"></nz-option>
       </nz-select>
     </nz-form-control>
   </nz-form-item>
@@ -52,10 +60,10 @@
         <div nz-row>
           <div nz-col nzSpan="12">
               <div class="p10 center" *ngIf="itemForm.get('imagePaths').value">
-                  <img full-width [src]="itemForm.get('imagePaths').value" />
+                  <img class="full-width" [src]="itemForm.get('imagePaths').value" />
                 </div>
                 <div class="p10 center" *ngIf="!itemForm.get('imagePaths').value">
-                  <img full-width src="assets/products/img/empty.png" />
+                  <img class="full-width" src="assets/products/img/empty.png" />
                 </div>
           </div>
           <div nz-col nzSpan="12">

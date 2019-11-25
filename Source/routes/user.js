@@ -9,7 +9,7 @@ users.use(cors())
 
 process.env.SECRET_KEY = 'huynbao'
 
-users.get('/', async (req, res) => {
+users.post('/get', async (req, res) => {
     try {
         if (req.body.orderField) {
             let orderField = req.body.orderField;
@@ -39,6 +39,7 @@ users.get('/', async (req, res) => {
     }
 })
 
+
 // for normal login 
 users.post('/register', (req, res) => {
     const today = new Date()
@@ -63,7 +64,7 @@ users.post('/register', (req, res) => {
                     userData.password = hash
                     User.create(userData)
                         .then(user => {
-                            res.json({ status: user.email + " Registered" })
+                            res.json({ message: user.email + " Registered", status: 'success' })
                         })
 
                         .catch(err => {
@@ -71,7 +72,7 @@ users.post('/register', (req, res) => {
                         })
                 })
             } else {
-                res.json({ error: ' User already exists' })
+                res.json({ message: 'email already exists', status: 'error' })
             }
         })
         .catch(err => {
@@ -111,7 +112,7 @@ users.post('/registersocial', (req, res) => {
                             }
                             // create token from jwt
                             let token = jwt.sign(payload, process.env.SECRET_KEY, {
-                                expiresIn: 1440
+                                expiresIn: 5760
                             })
                             // response token
                             res.json({ token: token })

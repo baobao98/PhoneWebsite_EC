@@ -15,6 +15,7 @@ export class Product {
     os: string;
   };
   typeProduct: string;
+  brand: string;
   imagePaths: Array<string>;
   quantity: number;
   description: string;

@@ -29,17 +29,21 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Number Order</th>
-      <th>Alias</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Type</th>
+      <th>brand</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let data of ajaxTable.data">
-      <td>{{ data.name.first }} {{ data.name.last }}</td>
-      <td>{{ data.gender }}</td>
-      <td>{{ data.email }}</td>
-      <td><a (click)="edit(data)">Sửa</a><nz-divider nzType="vertical"></nz-divider><a nz-popconfirm nzTitle="Bạn có chắc chắn muốn xóa?" (nzOnConfirm)="deleteRecord(data)" (nzOnCancel)="cancelDelete()">Xóa</a></td>
+      <td>{{data.name}}</td>
+      <td>{{ data.price }}</td>
+      <td>{{ data.quantity }}</td>
+      <td>{{ data.typeProduct.name }}</td>
+      <td>{{ data.brand.name }}</td>
+      <td><a (click)="edit(data)">Sửa</a><nz-divider nzType="vertical"></nz-divider><a nz-popconfirm nzTitle="Bạn có chắc chắn muốn xóa?" (nzOnConfirm)="deleteRecord(data._id)" (nzOnCancel)="cancelDelete()">Xóa</a></td>
     </tr>
   </tbody>
   </nz-table>

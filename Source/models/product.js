@@ -30,7 +30,7 @@ var productSchema = new Schema({
         sim: String,
         os: String,
     },
-    typeProduct: { type: ObjectId, ref: 'typeProduct'},
+    typeProduct: { type: ObjectId, ref: 'typeproduct'},
     brand: { type: ObjectId, ref: 'brand'},
     imagePaths: Array,
     quantity:Number,

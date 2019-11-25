@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseListComponent } from 'src/app/common/base/base-list';
 import { NzModalService, NzNotificationService } from 'ng-zorro-antd';
-import { ProductDetailComponent } from '../product-detail/product-detail.component';
+import { BrandDetailComponent } from '../brand-detail/brand-detail.component';
+import { BaseListComponent } from 'src/app/common/base/base-list';
 import { ActionEnum } from 'src/app/common/enums/Actions.enum';
 import { DataService } from 'src/app/services/data-service';
 
 @Component({
-  selector: 'app-product-list',
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  selector: 'app-brand-list',
+  templateUrl: './brand-list.component.html',
+  styleUrls: ['./brand-list.component.css']
 })
-export class ProductListComponent extends BaseListComponent implements OnInit {
+export class BrandListComponent extends BaseListComponent implements OnInit {
 
   constructor(
     public dataService: DataService,
@@ -21,14 +21,13 @@ export class ProductListComponent extends BaseListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.urlGetItems = '/api/product/get';
-    this.urlDeleteItem = '/api/product/';
+    this.urlGetItems = '/api/brand/get';
+    this.urlDeleteItem = '/api/brand/';
     this.getList();
   }
 
   async getList(reset = false) {
-    if (reset)
-      this.tableInfor.pageIndex = 1;
+    if (reset) this.tableInfor.pageIndex = 1;
     this.buildArgs();
     super.getList();
   }
@@ -39,13 +38,13 @@ export class ProductListComponent extends BaseListComponent implements OnInit {
 
   edit(model: any = null) {
     const modal = this.modalService.create({
-      nzTitle: model && model._id ? 'Sửa sản phẩm' : 'Thêm sản phẩm',
+      nzTitle: model && model._id ? 'Sửa loại sản phẩm' : 'Thêm loại sản phẩm',
       nzMaskClosable: false,
-      nzWidth: 800,
-      nzContent: ProductDetailComponent,
+      nzWidth: 500,
+      nzContent: BrandDetailComponent,
       nzComponentParams: {
         params: {
-          _id: model ? model._id : '',
+          id: model ? model._id : '',
           action: model ? ActionEnum.Update : ActionEnum.Add
         }
       },
@@ -56,7 +55,7 @@ export class ProductListComponent extends BaseListComponent implements OnInit {
         }
       },
       {
-        label: model && model.id ? 'Lưu' : 'Lưu',
+        label: model && model._id ? 'Lưu' : 'Lưu',
         type: 'primary',
         onClick: (component) => {
           component.save();
@@ -71,13 +70,13 @@ export class ProductListComponent extends BaseListComponent implements OnInit {
     });
   }
 
-  async Approve(id: any) {
+  async deleteRecord(id: any) {
     try {
       await super.deleteRecord(id);
-      this.notificationService.success('Thông báo', 'Đã duyệt thành thông!');
+      this.notificationService.success('Thông báo', 'Xóa thành thông!');
       this.getList();
     } catch (e) {
-      this.notificationService.error('Lỗi', 'Không thể duyệt được đối tượng này!');
+      this.notificationService.error('Lỗi', 'Không thể xóa được đối tượng này vì đối tượng này đang được sử dụng!');
       console.log(e);
     }
   }

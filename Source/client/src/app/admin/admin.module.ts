@@ -24,6 +24,8 @@ import { ProductTypeDetailComponent } from './product-type/product-type-detail/p
 import { SettingInformationListComponent } from './setting-information/setting-information-list/setting-information-list.component';
 import { SettingInformationDetailComponent } from './setting-information/setting-information-detail/setting-information-detail.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { BrandDetailComponent } from './brand/brand-detail/brand-detail.component';
+import { BrandListComponent } from './brand/brand-list/brand-list.component';
 
 
 
@@ -47,7 +49,10 @@ registerLocaleData(en);
     ProductTypeDetailComponent,
     SettingInformationListComponent,
     SettingInformationDetailComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
+    BrandListComponent,
+    BrandDetailComponent
+
   ],
   imports: [
     CommonModule,
@@ -60,6 +65,8 @@ registerLocaleData(en);
   ],
   entryComponents: [
     ProductTypeDetailComponent,
+    BrandDetailComponent,
+    OrderDetailComponent,
     ProductDetailComponent,
     SettingInformationDetailComponent
   ],

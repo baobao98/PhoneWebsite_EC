@@ -20,6 +20,9 @@ export class ProductCustomerService {
   getProduct(option): any {
     return this.http.post('/api/product/get', option);
   }
+  uploadAnh(option): any {
+    return this.http.post('/api/product/upload', option);
+  }
 
   getProductByID(_id: string) {
     return this.http.get('/api/product' + `/${_id}`);

@@ -94,7 +94,7 @@ Staffs.post('/login', (req, res) => {
                     }
                     // create token from jwt
                     let token = jwt.sign(payload, process.env.SECRET_KEY, {
-                        expiresIn: 1440
+                        expiresIn: 7200
                     })
                     // response token
                     res.json({ token: token })

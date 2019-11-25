@@ -27,7 +27,7 @@ export class BaseDetailComponent implements OnInit {
     });
 
     if (this.params.action === ActionEnum.Update) {
-      this.itemForm.addControl('_id', new FormControl('', Validators.required));
+      this.itemForm.addControl('_id', new FormControl(''));
     }
 
   }

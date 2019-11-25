@@ -24,7 +24,7 @@
             <div class="col-lg-4 col-md-6" *ngFor="let product of products">
               <div class="single-product">
                 <div class="product-img">
-                  <img class="card-img" src='../assets/products/img/{{product.imagePaths[0]}}' alt="" />
+                  <img class="card-img" src='{{product.imagePaths[0]}}' alt="" />
                   <div class="p_icon">
                     <a href="#">
                       <i class="ti-eye"></i>
@@ -38,7 +38,7 @@
                   </div>
                 </div>
                 <div class="product-btm">
-                  <a routerLink="/detail" (click)="setValue(product._id)" class="d-block">
+                  <a routerLink="/detail/{{product._id}}" class="d-block">
                     <h4>{{product.name}}</h4>
                   </a>
                   <div class="mt-3">

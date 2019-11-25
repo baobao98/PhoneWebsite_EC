@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule  } from '@angular/router';
 
 import { CustomerRoutingModule } from './customer-routing.module';
 import { CustomerHomeComponent } from './customer-home/customer-home.component';
@@ -53,6 +54,7 @@ export function provideConfig() {
   imports: [
     CommonModule,
     FormsModule,
+    RouterModule,
     CustomerRoutingModule,
     ReactiveFormsModule,
     SocialLoginModule

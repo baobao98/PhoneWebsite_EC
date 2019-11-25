@@ -4,9 +4,10 @@ import { DataService } from 'src/app/services/data-service';
 export class BaseListComponent implements OnInit {
 
   items: any = [];
+  filterField: any;
   tableInfor: any = {
     loading: false,
-
+    filterField: this.filterField,
     total: 10,
     pageIndex: 1,
     pageSize: 10,
