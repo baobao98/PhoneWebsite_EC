@@ -7,7 +7,7 @@ var mongoose = require('mongoose')
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDes = require('./api/swagger.json');
-var port = process.env.PORT || 3000
+var port = process.env.PORT || 3000;
 
 // import routes
 var Users= require('./routes/user.js')

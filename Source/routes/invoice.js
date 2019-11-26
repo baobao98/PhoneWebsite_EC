@@ -1,8 +1,10 @@
 const express = require('express')
 const Invoices = express.Router()
+const nodemailer = require("nodemailer");
 const cors = require("cors")
 const Product = require("../models/product")
 const Invoice = require("../models/invoice")
+// const {mailService} = require("../services/mailService.js")
 
 Invoices.use(cors())
 
@@ -36,20 +38,6 @@ Invoices.post('/create', async (req, res) => {
     })
 })
 
-// var generateCode = () => {
-//     var code;
-//     Invoice.findOne().sort({ dateOrdered: -1 }).exec(async (err, invoice) => {
-//         if (err) console.log(err);
-//         if (invoice) {
-//             code = await inccrease(invoice.code);
-//             console.log(code);
-//         }
-//         else {
-//             code = 'INV76541BH';
-//         }
-//     });
-//     return code;
-// }
 let generateCode = () => {
     var code = 'BH' + Math.floor(Math.random() * 100000);
     return code;
@@ -161,7 +149,36 @@ Invoices.get('/filterByState', (req, res) => {
     })
 })
 //===END Filter
+Invoices.post('/testmail', (req, res) => {
+    // mailService();
+    // step 1 
+    let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'auto.system.service.bao@gmail.com',
+            pass: '@phuocbao98',
+        }
+    });
 
+    // step 2
+    let mailOptions = {
+        from: 'auto.system.service.bao@gmail.com',
+        to: 'lamphuocbao98@gmail.com',
+        subject: 'Testing mail',
+        text: 'IT works'
+    };
+
+    // Step 3
+
+    transporter.sendMail(mailOptions, function (err, data) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('Mail sent');
+        }
+    });
+
+})
 
 //on routes end at /:invoice_id
 Invoices.route('/:invoice_id')
