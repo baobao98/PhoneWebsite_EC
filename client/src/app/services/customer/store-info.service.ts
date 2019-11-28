@@ -8,7 +8,7 @@ import { storeInfo } from 'src/app/models/storeInfo.model';
 export class StoreInfoService {
 
   storeInfo: storeInfo;
-  readonly baseURL = 'http://localhost:3000/api/info';
+  readonly baseURL = '/api/info';
 
   constructor(private http: HttpClient) { }
 

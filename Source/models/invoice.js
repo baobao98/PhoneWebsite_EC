@@ -5,6 +5,7 @@ var Schema = mongosee.Schema;
 var invoiceSchema = new Schema({
     code: { type: String, required: true },
     receiver: { type: String, required: true },
+    email: { type: String, required: true },
     address: { type: String, required: true },
     note: String,
     phoneNumber: { type: String, required: true },
