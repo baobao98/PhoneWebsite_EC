@@ -18,9 +18,6 @@ import { DataService } from './services/data-service';
 import { HttpClientCustom } from './services/http-client';
 import { LoadScriptService } from './services/load-scripts.service';
 
-// firebase module
-import { AngularFireModule } from '@angular/fire';
-import { environment } from '../environments/environment';
 
 
 
@@ -51,8 +48,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     AuthModule,
     CustomerModule,
-    AdminModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AdminModule
   ],
   providers: [
     AuthenticationService,

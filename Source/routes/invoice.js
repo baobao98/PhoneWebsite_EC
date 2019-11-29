@@ -36,7 +36,7 @@ Invoices.post('/create', async (req, res) => {
                 })
             })
         });
-        await mailService.option(inv.products,inv.email, inv.code, inv.receiver, new Date.now);
+        await mailService.option(inv.products,inv.email, inv.code, inv.receiver, Date.now());
         mailService.send();
         
         res.json({ message: 'Invoice created' });
