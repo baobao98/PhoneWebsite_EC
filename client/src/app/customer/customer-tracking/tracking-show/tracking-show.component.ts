@@ -22,10 +22,7 @@ export class TrackingShowComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       let result = this.invoiceService.getInvoiceByID(params.get("orderid"));
-      result.subscribe(res => {
-        console.log(res);
-      })
-
-    })
+      result.subscribe(x => this.invoice = x[0]);
+    });
   }
 }
