@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { InvoiceCustomerService } from 'src/app/services/customer/invoice.customer.service';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Invoice } from "src/app/models/invoice.model";
 
 @Component({
@@ -10,8 +12,7 @@ import { Invoice } from "src/app/models/invoice.model";
 })
 export class TrackingShowComponent implements OnInit {
 
-  // invoice: Invoice;
-  state: any;
+  invoice: Invoice;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,12 +21,11 @@ export class TrackingShowComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.invoiceService.getInvoiceByID(params.get("orderid")).subscribe(res => {
-        // this.invoice = res as Invoice;
-        // window.alert(this.invoice.state);
-        this.state = res.state;
-      });
-    });
-  }
+      let result = this.invoiceService.getInvoiceByID(params.get("orderid"));
+      result.subscribe(res => {
+        console.log(res);
+      })
 
+    })
+  }
 }
