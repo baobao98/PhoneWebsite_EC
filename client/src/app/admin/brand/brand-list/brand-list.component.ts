@@ -21,8 +21,8 @@ export class BrandListComponent extends BaseListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.urlGetItems = this.baseUrl + '/api/brand/get';
-    this.urlDeleteItem = this.baseUrl + '/api/brand/';
+    this.urlGetItems = '/api/brand/get';
+    this.urlDeleteItem = '/api/brand/';
     this.getList();
   }
 

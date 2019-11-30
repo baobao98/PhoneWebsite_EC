@@ -94,7 +94,7 @@
             </div>
           </div>
           <div class="product-btm">
-            <a href="#" class="d-block">
+            <a routerLink="/detail/{{pro._id}}" class="d-block">
               <h4>{{pro.name}}</h4>
             </a>
             <div class="mt-3">
@@ -171,7 +171,7 @@
                 </div>
               </div>
               <div class="product-btm">
-                <a routerLink="/detail" (click)="setValue(pro._id)" class="d-block">
+                <a routerLink="/detail/{{pro._id}}" class="d-block">
                   <h4>{{pro.name}}</h4>
                 </a>
                 <div class="mt-3">
@@ -219,7 +219,7 @@
             </div>
           </div>
           <div class="product-btm">
-            <a href="#" class="d-block">
+            <a routerLink="/detail/{{pro._id}}" class="d-block">
               <h4>{{pro.name}}</h4>
             </a>
             <div class="mt-3">

@@ -7,6 +7,8 @@ import { AuthenticationService } from './authentication.service';
 
 @Injectable()
 export class HttpClientCustom {
+  private baseUrl = 'https://phone-shop-server-huybao.herokuapp.com';
+
   tokenValue: any;
   constructor(private http: HttpClient
     , private authSvc: AuthenticationService
@@ -46,8 +48,8 @@ export class HttpClientCustom {
     //   this.redirectToLoginPage();
     // }
     let headers = new HttpHeaders();
-    headers =this.createAuthorizationHeader(headers);
-    return this.http.get(url, {
+    headers = this.createAuthorizationHeader(headers);
+    return this.http.get(this.baseUrl + url, {
       headers: headers,
     });
 
@@ -68,7 +70,7 @@ export class HttpClientCustom {
 
     let headers = new HttpHeaders();
     headers = this.createAuthorizationHeader(headers);
-    return this.http.post(url, data, {
+    return this.http.post(this.baseUrl + url, data, {
       headers: headers,
     });
   }
@@ -79,7 +81,7 @@ export class HttpClientCustom {
     // }
     let headers = new HttpHeaders();
     headers = this.createAuthorizationHeader(headers);
-    return this.http.put(url, data, {
+    return this.http.put(this.baseUrl + url, data, {
       headers: headers,
     });
   }
@@ -90,7 +92,7 @@ export class HttpClientCustom {
     // }
     let headers = new HttpHeaders();
     headers = this.createAuthorizationHeader(headers);
-    return this.http.delete(url, {
+    return this.http.delete(this.baseUrl + url, {
       headers: headers,
     });
   }
@@ -101,7 +103,7 @@ export class HttpClientCustom {
     // }
     const headers = new HttpHeaders()
     // this.createAuthorizationHeaderForUploading(headers);
-    return this.http.post(url, data, {
+    return this.http.post(this.baseUrl + url, data, {
       headers: headers,
     });
   }

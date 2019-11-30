@@ -22,9 +22,9 @@ export class BrandDetailComponent extends BaseDetailComponent implements OnInit 
   }
 
   ngOnInit() {
-    this.urlItemByID = this.baseUrl + '/api/brand';
-    this.urlSaveItem = this.baseUrl + '/api/brand/create';
-    this.urlUpdateByID = this.baseUrl + '/api/brand';
+    this.urlItemByID = '/api/brand';
+    this.urlSaveItem = '/api/brand/create';
+    this.urlUpdateByID = '/api/brand';
     super.ngOnInit();
     this.itemForm.addControl('name', new FormControl('', Validators.required));
     this.itemForm.addControl('no', new FormControl(1, Validators.required));
