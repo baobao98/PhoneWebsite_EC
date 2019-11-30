@@ -30,9 +30,13 @@ export class CustomerLayoutHeaderComponent implements OnInit {
 
   }
 
-  async getInfo() {
-    let info = await this.storeInfoService.getStoreInfo().subscribe((res) => {
-      this.info = res[0] as storeInfo;
+  getInfo() {
+    let result = this.storeInfoService.getStoreInfo();
+    // result.subscribe(res => {
+    //   this.info = res[0] as storeInfo;
+    // });
+    result.subscribe(res => {
+      this.info = res[0];
     });
   }
   logout() {
@@ -50,7 +54,12 @@ export class CustomerLayoutHeaderComponent implements OnInit {
   toHome(link: string) {
     this.route.navigateByUrl(link);
   }
-
+  toProfile(link: string) {
+    this.route.navigateByUrl(link);
+  }
+  toLink(link: string) {
+    this.route.navigateByUrl(link);
+  }
 
 
 }

@@ -11,7 +11,7 @@ import { DataService } from 'src/app/services/data-service';
   styleUrls: ['./brand-list.component.css']
 })
 export class BrandListComponent extends BaseListComponent implements OnInit {
-
+  private baseUrl = 'https://phone-shop-server-huybao.herokuapp.com';
   constructor(
     public dataService: DataService,
     private modalService: NzModalService,
@@ -21,8 +21,8 @@ export class BrandListComponent extends BaseListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.urlGetItems = '/api/brand/get';
-    this.urlDeleteItem = '/api/brand/';
+    this.urlGetItems = this.baseUrl + '/api/brand/get';
+    this.urlDeleteItem = this.baseUrl + '/api/brand/';
     this.getList();
   }
 

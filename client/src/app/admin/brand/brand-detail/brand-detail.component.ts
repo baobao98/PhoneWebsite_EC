@@ -11,7 +11,7 @@ import { DataService } from 'src/app/services/data-service';
   styleUrls: ['./brand-detail.component.css']
 })
 export class BrandDetailComponent extends BaseDetailComponent implements OnInit {
-
+  private baseUrl = 'https://phone-shop-server-huybao.herokuapp.com';
   constructor(
     public modal: NzModalRef,
     public fb: FormBuilder,
@@ -22,9 +22,9 @@ export class BrandDetailComponent extends BaseDetailComponent implements OnInit 
   }
 
   ngOnInit() {
-    this.urlItemByID = '/api/brand';
-    this.urlSaveItem = '/api/brand/create';
-    this.urlUpdateByID = '/api/brand';
+    this.urlItemByID = this.baseUrl + '/api/brand';
+    this.urlSaveItem = this.baseUrl + '/api/brand/create';
+    this.urlUpdateByID = this.baseUrl + '/api/brand';
     super.ngOnInit();
     this.itemForm.addControl('name', new FormControl('', Validators.required));
     this.itemForm.addControl('no', new FormControl(1, Validators.required));
