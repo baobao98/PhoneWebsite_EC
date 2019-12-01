@@ -32,11 +32,10 @@ export class CustomerLayoutHeaderComponent implements OnInit {
 
   getInfo() {
     let result = this.storeInfoService.getStoreInfo();
-    // result.subscribe(res => {
-    //   this.info = res[0] as storeInfo;
-    // });
-    result.subscribe(res => {
-      this.info = res[0];
+    result.subscribe(info => {
+      console.log(info);
+      this.info = info[0];
+      console.log(this.info);
     });
   }
   logout() {
