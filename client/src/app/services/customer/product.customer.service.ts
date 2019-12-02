@@ -9,6 +9,7 @@ import { Product } from 'src/app/models/product.model';
 export class ProductCustomerService {
   product: Product;
   private baseUrl = 'https://phone-shop-server-huybao.herokuapp.com';
+  // private baseUrl = '';
   // productID: string;
   productID = '5dbaf033dee8d12a048edce1';
 

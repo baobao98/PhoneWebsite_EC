@@ -8,6 +8,7 @@ import { AuthenticationService } from './authentication.service';
 @Injectable()
 export class HttpClientCustom {
   private baseUrl = 'https://phone-shop-server-huybao.herokuapp.com';
+  // private baseUrl = '';
 
   tokenValue: any;
   constructor(private http: HttpClient
