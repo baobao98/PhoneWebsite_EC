@@ -45,6 +45,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+
     RouterModule.forRoot(routes),
     AuthModule,
     CustomerModule,
