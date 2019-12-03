@@ -26,6 +26,8 @@ import { SettingInformationDetailComponent } from './setting-information/setting
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { BrandDetailComponent } from './brand/brand-detail/brand-detail.component';
 import { BrandListComponent } from './brand/brand-list/brand-list.component';
+import { StaffDetailComponent } from './staff/staff-detail/staff-detail.component';
+import { StaffListComponent } from './staff/staff-list/staff-list.component';
 
 
 
@@ -51,7 +53,9 @@ registerLocaleData(en);
     SettingInformationDetailComponent,
     AdminLoginComponent,
     BrandListComponent,
-    BrandDetailComponent
+    BrandDetailComponent,
+    StaffDetailComponent,
+    StaffListComponent
 
   ],
   imports: [
@@ -68,7 +72,8 @@ registerLocaleData(en);
     BrandDetailComponent,
     OrderDetailComponent,
     ProductDetailComponent,
-    SettingInformationDetailComponent
+    SettingInformationDetailComponent,
+    StaffDetailComponent
   ],
   /** config ng-zorro-antd i18n (language && date) **/
   providers   : [
