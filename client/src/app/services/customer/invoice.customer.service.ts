@@ -11,7 +11,7 @@ export class InvoiceCustomerService {
   ) { }
 
   getInvoiceByID(_id: string): any {
-    return this.http.get(this.baseUrl + '/api/invoice' + `/${_id}`);
+    return this.http.get(this.baseUrl + '/api/invoice/tracking' + `/${_id}`);
   }
 
 }
