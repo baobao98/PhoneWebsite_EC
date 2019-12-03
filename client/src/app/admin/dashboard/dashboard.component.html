@@ -3,7 +3,7 @@
     <nz-col [nzSpan]="6">
       <nz-card>
         <nz-statistic
-          [nzValue]="infoDashboard.nosent | number: '1.0-2'"
+          [nzValue]="infoDashboard.noSent | number: '1.0-2'"
           [nzTitle]="'Số đơn hàng đang chờ duyệt'"
           [nzPrefix]="prefixTplOne"
           [nzValueStyle]="{ color: '#3F8600' }"
@@ -15,7 +15,7 @@
     <nz-col [nzSpan]="6">
       <nz-card>
         <nz-statistic
-          [nzValue]="infoDashboard.nodelivery | number"
+          [nzValue]="infoDashboard.noDelivery | number"
           [nzTitle]="'Số lượng đơn đang vận chuyển'"
           [nzPrefix]="prefixTplTwo"
           [nzValueStyle]="{ color: '#CF1322' }"

@@ -131,10 +131,10 @@ export class DashboardComponent extends BaseListComponent implements OnInit {
   };
 
   infoDashboard = {
-    'nosent': 5,
-    'nodelivery': 1,
-    'total': 59920009,
-    'noInvoice': 1
+    noSent: 0,
+    noDelivery: 0,
+    total: 0,
+    noInvoice: 0
   };
 
   urlGetItems = '/api/invoice/get';
@@ -155,16 +155,16 @@ export class DashboardComponent extends BaseListComponent implements OnInit {
     await this.getList();
     this.transformData();
     console.log(this.items);
-    this.getInfoForStaticZorro();
+    // this.getInfoForStaticZorro();
   }
 
-  async getInfoForStaticZorro() {
-    try {
-      let res = await this.dataService.getItems(this.urlGetInfoNumberInvoice, {});
-      this.infoDashboard = res;
-      console.log(res);
-    } catch (e) { console.log(e); }
-  }
+  // async getInfoForStaticZorro() {
+  //   try {
+  //     let res = await this.dataService.getItems(this.urlGetInfoNumberInvoice, {});
+  //     this.infoDashboard = res;
+  //     console.log(res);
+  //   } catch (e) { console.log(e); }
+  // }
 
   transformData() {
     if (this.items.length) {
@@ -172,10 +172,10 @@ export class DashboardComponent extends BaseListComponent implements OnInit {
 
       const startOfMonth = moment().startOf('month').toDate();
       const endOfMonth = moment().endOf('month').add(1, 'days').toDate();
-      console.log(startOfMonth);
-      console.log(endOfMonth);
-
       // this.items = this.items.filter(item => item.dateOrdered >= startOfMonth && item.dateOrdered < endOfMonth);
+
+      this.infoDashboard = this.findInfo(this.items);
+      console.log(this.items);
       this.items.forEach(ivc => {
         if (ivc.products.length > 0) {
           ivc.products.forEach(p => {
@@ -204,11 +204,30 @@ export class DashboardComponent extends BaseListComponent implements OnInit {
 
         data_transform.push(nObject);
       });
-      console.log(data_transform);
       this.single = data_transform;
-
-      console.log(products);
     }
   }
 
+  // tim ra các infor sau   infoDashboard = { 'nosent': 5, 'nodelivery': 1, 'total': 59920009, 'noInvoice': 1 };
+
+  findInfo(items: any) {
+    let result = {
+      noSent: 0,
+      noDelivery: 0,
+      total: 0,
+      noInvoice: 0
+    };
+    items.forEach(item => {
+      if (item.state === 'Sent') result.noSent++;
+      else if (item.state === 'Delivering') result.noDelivery++;
+      else if (item.state === 'Closed') result.noInvoice++;
+
+      let total = 0;
+      item.products.forEach(p => {
+        total += p.promotion * p.quantity;
+      });
+      result.total = total;
+    });
+    return result;
+  }
 }
