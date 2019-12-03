@@ -1,4 +1,56 @@
-<p>dashboard works!</p>
-<button nz-button>
-  click me
-</button>
+<div style="background: #ECECEC; padding: 10px;">
+  <nz-row [nzGutter]="16">
+    <nz-col [nzSpan]="6">
+      <nz-card>
+        <nz-statistic
+          [nzValue]="11.28 | number: '1.0-2'"
+          [nzTitle]="'Số đơn hàng đang chờ duyệt'"
+          [nzPrefix]="prefixTplOne"
+          [nzSuffix]="'%'"
+          [nzValueStyle]="{ color: '#3F8600' }"
+        >
+        </nz-statistic>
+        <ng-template #prefixTplOne><i nz-icon nzType="arrow-up"></i></ng-template>
+      </nz-card>
+    </nz-col>
+    <nz-col [nzSpan]="6">
+      <nz-card>
+        <nz-statistic
+          [nzValue]="9.3 | number: '1.0-2'"
+          [nzTitle]="'Số lượng đơn đang vận chuyển'"
+          [nzPrefix]="prefixTplTwo"
+          [nzSuffix]="'%'"
+          [nzValueStyle]="{ color: '#CF1322' }"
+        >
+        </nz-statistic>
+        <ng-template #prefixTplTwo><i nz-icon nzType="arrow-down"></i></ng-template>
+      </nz-card>
+    </nz-col>
+    <nz-col [nzSpan]="6">
+      <nz-card>
+        <nz-statistic
+          [nzValue]="9.3 | number: '1.0-2'"
+          [nzTitle]="'Số lượng đơn đặt hàng trong tháng'"
+          [nzPrefix]="prefixTplTwo"
+          [nzSuffix]="'%'"
+          [nzValueStyle]="{ color: '#CF1322' }"
+        >
+        </nz-statistic>
+        <ng-template #prefixTplTwo><i nz-icon nzType="arrow-down"></i></ng-template>
+      </nz-card>
+    </nz-col>
+    <nz-col [nzSpan]="6">
+      <nz-card>
+        <nz-statistic
+          [nzValue]="9.3 | number: '1.0-2'"
+          [nzTitle]="'Doanh thu trong tháng'"
+          [nzPrefix]="prefixTplTwo"
+          [nzSuffix]="'%'"
+          [nzValueStyle]="{ color: '#CF1322' }"
+        >
+        </nz-statistic>
+        <ng-template #prefixTplTwo><i nz-icon nzType="arrow-down"></i></ng-template>
+      </nz-card>
+    </nz-col>
+  </nz-row>
+</div>
