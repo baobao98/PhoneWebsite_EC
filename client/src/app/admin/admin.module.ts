@@ -27,7 +27,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { BrandDetailComponent } from './brand/brand-detail/brand-detail.component';
 import { BrandListComponent } from './brand/brand-list/brand-list.component';
 
-
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 registerLocaleData(en);
@@ -61,7 +61,8 @@ registerLocaleData(en);
     AdminRoutingModule,
     /** import ng-zorro-antd root module，you should import NgZorroAntdModule and avoid importing sub modules directly **/
     NgZorroAntdModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxChartsModule
   ],
   entryComponents: [
     ProductTypeDetailComponent,

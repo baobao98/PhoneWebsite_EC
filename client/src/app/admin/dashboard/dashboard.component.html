@@ -3,10 +3,9 @@
     <nz-col [nzSpan]="6">
       <nz-card>
         <nz-statistic
-          [nzValue]="11.28 | number: '1.0-2'"
+          [nzValue]="infoDashboard.nosent | number: '1.0-2'"
           [nzTitle]="'Số đơn hàng đang chờ duyệt'"
           [nzPrefix]="prefixTplOne"
-          [nzSuffix]="'%'"
           [nzValueStyle]="{ color: '#3F8600' }"
         >
         </nz-statistic>
@@ -16,41 +15,55 @@
     <nz-col [nzSpan]="6">
       <nz-card>
         <nz-statistic
-          [nzValue]="9.3 | number: '1.0-2'"
+          [nzValue]="infoDashboard.nodelivery | number"
           [nzTitle]="'Số lượng đơn đang vận chuyển'"
           [nzPrefix]="prefixTplTwo"
-          [nzSuffix]="'%'"
           [nzValueStyle]="{ color: '#CF1322' }"
         >
         </nz-statistic>
-        <ng-template #prefixTplTwo><i nz-icon nzType="arrow-down"></i></ng-template>
+        <ng-template #prefixTplTwo><i nz-icon nzType="arrow-up"></i></ng-template>
       </nz-card>
     </nz-col>
     <nz-col [nzSpan]="6">
       <nz-card>
         <nz-statistic
-          [nzValue]="9.3 | number: '1.0-2'"
+          [nzValue]="infoDashboard.noInvoice | number"
           [nzTitle]="'Số lượng đơn đặt hàng trong tháng'"
           [nzPrefix]="prefixTplTwo"
-          [nzSuffix]="'%'"
-          [nzValueStyle]="{ color: '#CF1322' }"
+          [nzValueStyle]="{ color: '#3F8600' }"
         >
         </nz-statistic>
-        <ng-template #prefixTplTwo><i nz-icon nzType="arrow-down"></i></ng-template>
+        <ng-template #prefixTplTwo><i nz-icon nzType="arrow-up"></i></ng-template>
       </nz-card>
     </nz-col>
     <nz-col [nzSpan]="6">
       <nz-card>
         <nz-statistic
-          [nzValue]="9.3 | number: '1.0-2'"
+          [nzValue]="infoDashboard.total | number"
           [nzTitle]="'Doanh thu trong tháng'"
           [nzPrefix]="prefixTplTwo"
-          [nzSuffix]="'%'"
+          [nzSuffix]="'VND'"
           [nzValueStyle]="{ color: '#CF1322' }"
         >
         </nz-statistic>
-        <ng-template #prefixTplTwo><i nz-icon nzType="arrow-down"></i></ng-template>
+        <ng-template #prefixTplTwo><i nz-icon nzType="arrow-up"></i></ng-template>
       </nz-card>
     </nz-col>
   </nz-row>
+</div>
+<div class="m10"></div>
+<div nz-row nzType="flex" nzAlign="middle">
+  <ngx-charts-bar-vertical
+  [view]="view"
+  [results]="single"
+  [gradient]="gradient"
+  [xAxis]="showXAxis"
+  [yAxis]="showYAxis"
+  [legend]="showLegend"
+  [showXAxisLabel]="showXAxisLabel"
+  [showYAxisLabel]="showYAxisLabel"
+  [xAxisLabel]="xAxisLabel"
+  [yAxisLabel]="yAxisLabel"
+  (select)="onSelect($event)">
+</ngx-charts-bar-vertical>
 </div>
