@@ -27,6 +27,11 @@ export class OrderDetailComponent extends BaseDetailComponent implements OnInit 
 
     super.ngOnInit();
 
+    if (!this.OneItem) {
+      this.OneItem = {
+        products: []
+      };
+    }
     this.itemForm.addControl('state', new FormControl('', Validators.required));
     this.itemForm.addControl('dateOrdered', new FormControl('', Validators.required));
     this.itemForm.addControl('code', new FormControl('', Validators.required));
@@ -45,7 +50,7 @@ export class OrderDetailComponent extends BaseDetailComponent implements OnInit 
   async getItem(id: any) {
     try {
       await super.getItemByID(id);
-      // console.log(this.OneItem);
+      console.log(this.OneItem);
       this.itemForm.patchValue(this.OneItem);
     } catch (e) { console.log(e); }
   }

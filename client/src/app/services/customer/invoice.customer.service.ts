@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class InvoiceCustomerService {
   private baseUrl = 'https://phone-shop-server-huybao.herokuapp.com';
+  // private baseUrl = '';
   constructor(
     private http: HttpClient
   ) { }

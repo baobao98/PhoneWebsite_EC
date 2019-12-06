@@ -17,7 +17,7 @@
   <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber">phoneNumber</nz-form-label>
     <nz-form-control [nzSm]="18" [nzXs]="24">
-      <nz-input-number readonly formControlName="phoneNumber"></nz-input-number>
+      <nz-input-number style="width: 100%" readonly formControlName="phoneNumber"></nz-input-number>
     </nz-form-control>
   </nz-form-item>
   <!-- address -->
@@ -50,18 +50,12 @@
   </nz-form-item>
   <!-- dateOrdered -->
   <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="dateOrdered">dateOrdered</nz-form-label>
-    <nz-form-control [nzSm]="18" [nzXs]="24">
-      <nz-date-picker nz-input formControlName="dateOrdered" id="dateOrdered"></nz-date-picker>
+    <nz-form-label [nzSm]="6" [nzXs]="6" nzFor="dateOrdered">date Ordered</nz-form-label>
+    <nz-form-control [nzSm]="18" [nzXs]="18">
+      <nz-date-picker formControlName="dateOrdered" id="dateOrdered"></nz-date-picker>
     </nz-form-control>
   </nz-form-item>
   <!-- note -->
-  <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="note">note</nz-form-label>
-    <nz-form-control [nzSm]="18" [nzXs]="24">
-      <input readonly nz-input formControlName="note" id="note" />
-    </nz-form-control>
-  </nz-form-item>
 </form>
 <hr>
 <h3>Product Items</h3>
