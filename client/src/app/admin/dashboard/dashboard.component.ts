@@ -114,7 +114,7 @@ export class DashboardComponent extends BaseListComponent implements OnInit {
 
   multi: any[];
 
-  view: any[] = [700, 400];
+  view: any[] = [900, 400];
 
   // options
   showXAxis = true;
@@ -224,10 +224,11 @@ export class DashboardComponent extends BaseListComponent implements OnInit {
 
       let total = 0;
       item.products.forEach(p => {
-        total += p.promotion * p.quantity;
+        total += p.product.promotion * p.quantity;
       });
       result.total = total;
     });
+    console.log(result);
     return result;
   }
 }
