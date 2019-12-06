@@ -26,7 +26,7 @@
                   track order
                 </a>
               </li>
-              <li *ngIf="user.first_name">
+              <li *ngIf="user && user.first_name">
                   {{user.first_name}}
                 </li>
             </ul>

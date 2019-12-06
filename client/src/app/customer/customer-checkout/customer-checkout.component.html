@@ -86,35 +86,12 @@
                 </a>
               </li>
             </ul>
-            <div class="payment_item">
-              <div class="radion_btn">
-                <input type="radio" id="f-option5" name="selector" />
-                <label for="f-option5">Check payments</label>
-                <div class="check"></div>
-              </div>
-              <p>
-                Please send a check to Store Name, Store Street, Store Town,
-                Store State / County, Store Postcode.
-              </p>
-            </div>
-            <div class="payment_item active">
-              <div class="radion_btn">
-                <input type="radio" id="f-option6" name="selector" />
-                <label for="f-option6">Paypal </label>
-                <img src='../assets/customer/img/product/single-product/card.jpg' alt="" />
-                <div class="check"></div>
-              </div>
-              <p>
-                Please send a check to Store Name, Store Street, Store Town,
-                Store State / County, Store Postcode.
-              </p>
-            </div>
             <div class="creat_account">
-              <input type="checkbox" id="f-option4" name="selector" />
+              <input type="checkbox" id="f-option4" name="selector" [(ngModel)]="acceptTermAndService" />
               <label for="f-option4">I’ve read and accept the </label>
               <a href="#">terms & conditions*</a>
             </div>
-            <a class="main_btn" [ngClass]="{'disable': this.billForm.invalid }" (click)="placeOrder()" >Proceed to Paypal</a>
+            <a class="main_btn" [ngClass]="{'disable': (this.billForm.invalid || !acceptTermAndService) }" (click)="placeOrder()" >Place Order</a>
           </div>
         </div>
       </div>

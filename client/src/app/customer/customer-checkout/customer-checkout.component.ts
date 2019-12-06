@@ -15,6 +15,8 @@ export class CustomerCheckoutComponent implements OnInit {
   items: Item[] = [];
   total: number = 0;
 
+  acceptTermAndService = false;
+
   constructor(
     private cartService: CartService,
     private fb: FormBuilder,
